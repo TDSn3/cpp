@@ -6,13 +6,11 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 09:00:46 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/12/30 22:28:21 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/12/30 22:32:17 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <stdio.h>
-
 
 int	*str_toupper_cpp(char *str);
 

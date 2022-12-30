@@ -1,6 +1,6 @@
-.DStore
-.DS_Store
-.vscode
-object
+*.DStore
+*.DS_Store
+*.vscode
+*object
 *.o
 *.a
