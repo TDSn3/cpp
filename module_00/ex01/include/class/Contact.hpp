@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   classe.hpp                                         :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:44:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/02 13:46:55 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/02 15:39:45 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLASSE_HPP
-# define CLASSE_HPP
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 #include <iostream>
+
+class Contact
+{
+
+public:
+
+	Contact(void);
+	~Contact(void);
+
+private:
+
+};
 
 #endif

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 13:41:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/02 15:42:08 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/01/02 13:44:59 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/01/02 15:17:47 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <header.h>
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-int	main(int argc, char **argv)
+#include <iostream>
+
+class PhoneBook
 {
-	PhoneBook	instance_PhoneBook;
 
-	(void) argc;
-	(void) argv;
-	std::cout << "Hello world !" << std::endl;
-	return (0);
-}
+public:
+
+    PhoneBook(void);
+    ~PhoneBook(void);
+
+private: 
+
+};
+
+#endif

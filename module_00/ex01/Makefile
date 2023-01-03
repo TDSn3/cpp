@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/01/02 13:48:41 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/01/02 15:30:44 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,10 @@ I_HEADERS	= -I $(INC_DIR)
 
 ################################################################################
 
-NAME_FILE	= main
+NAME_FILE	= $(addprefix class/,												\
+								PhoneBook										\
+			   )																\
+			   main																\
 
 SRC			= $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
