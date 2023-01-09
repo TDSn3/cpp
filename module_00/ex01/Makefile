@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/01/02 15:30:44 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/01/04 10:11:55 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ I_HEADERS	= -I $(INC_DIR)
 
 NAME_FILE	= $(addprefix class/,												\
 								PhoneBook										\
+								Contact											\
 			   )																\
 			   main																\
 
