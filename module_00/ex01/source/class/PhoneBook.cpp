@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:18:42 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/09 12:22:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:27:36 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,22 +90,18 @@ void	PhoneBook::add_contact(void)
 	std::string	darkest_secret;
 
 	std::cout << "first name : ";
-	std::cin >> first_name;
-	std::getline(std::cin, last_name);
+	std::getline(std::cin, first_name);
 	
 	std::cout << "last name : ";
 	std::getline(std::cin, last_name);
 
 	std::cout << "nickname : ";
-	std::cin >> nickname;
-	std::getline(std::cin, phone_number);
+	std::getline(std::cin, nickname);
 
 	std::cout << "phone_number : ";
-	std::cin >> phone_number;
 	std::getline(std::cin, phone_number);
 
 	std::cout << "darkest_secret : ";
-	std::cin >> darkest_secret;
 	std::getline(std::cin, darkest_secret);
 
 	older_contact->add_contact(1, first_name, last_name, nickname, phone_number, darkest_secret);
@@ -116,10 +112,27 @@ void	PhoneBook::print_contact(void)
 	int	i;
 
 	i = 0;
+	std::cout << "┌──────────┬──────────┬──────────┬──────────┐\n";
+	std::cout << "│    INDEX │    FIRST │     LAST │ NICKNAME │\n";
+	std::cout << "│          │     NAME │     NAME │          │\n";
+	std::cout << "└──────────┴──────────┴──────────┴──────────┘" << std::endl;
 	while (i < 8)
 	{
 		if (this->instance_contact[i].get_used())
 			this->instance_contact[i].print_content(i + 1);
 		i++;
 	}
+	std::cout << "┌──────────┬──────────┬──────────┬──────────┐\n";
+	std::cout << "└──────────┴──────────┴──────────┴──────────┘" << std::endl;
+}
+
+
+void	PhoneBook::choice_index(void)
+{
+	int	index;
+
+	index = -1;
+	std::cout << "choice index : ";
+	std::cin >> index;
+	std::cin.clear();
 }
