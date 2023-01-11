@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/01/04 10:11:55 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/01/11 14:35:50 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,25 +21,34 @@ CC			= g++
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 # **************************************************************************** #
-# -I | Chemin du dossier où trouver un .h									   #
-# -L | Chemin du dossier où trouver un .a									   #
-# -l | Nom du .a sans le préfixe "lib"										   #
+#                                                                              #
+#   -I   | Chemin du dossier où trouver un .h								   #
+#   -L   | Chemin du dossier où trouver un .a								   #
+#   -l   | Nom du .a sans le préfixe "lib"									   #
+#                                                                              #
 # **************************************************************************** #
 
 I_HEADERS	= -I $(INC_DIR)
-
-################################################################################
 
 NAME_FILE	= $(addprefix class/,												\
 								PhoneBook										\
 								Contact											\
 			   )																\
 			   main																\
+			   compare_menu														\
 
 SRC			= $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 
-################################################################################
+# **************************************************************************** #
+#                                                                              #
+#   $@   | Le nom de la cible												   #
+#   $<   | Le nom de la première dépendance									   #
+#   $^   | La liste des dépendances											   #
+#   $?   | La liste des dépendances plus récentes que la cible				   #
+#   $*   | Le nom du fichier sans suffixe									   #
+#                                                                              #
+# **************************************************************************** #
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	mkdir -p $(dir $@)

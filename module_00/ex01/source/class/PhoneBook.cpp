@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:18:42 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/10 13:27:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:03:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,54 +34,9 @@ PhoneBook::~PhoneBook(void)
 	return ;
 }
 
-int	PhoneBook::size_contact(void)
-{
-	int	i;
-	int	size;
-
-	i = 0;
-	size = 0;
-	while (i < 8)
-	{
-		if (this->instance_contact[i].get_used())
-			size++;
-		i++;
-	}
-	return (size);
-}
-
-Contact	*PhoneBook::get_older_contact(void)
-{
-	int	i;
-	int	stock;
-	int	stock_min;
-
-	i = 0;
-	while (i < 8)
-	{
-		if (!this->instance_contact[i].get_used())
-			return (&this->instance_contact[i]);
-		i++;
-	}
-
-	i = 0;
-	stock_min = 8;
-	while (i < 8)
-	{
-		stock = this->instance_contact[i].get_used();
-		if (stock)
-			if (stock < stock_min)
-				stock_min = stock;
-		i++;
-	}
-	return (&this->instance_contact[stock_min - 1]);
-}
-
 void	PhoneBook::add_contact(void)
 {
-	Contact	*older_contact;
-
-	older_contact = PhoneBook::get_older_contact();
+	Contact	new_contact;
 
 	std::string	first_name;
 	std::string	last_name;
@@ -91,48 +46,105 @@ void	PhoneBook::add_contact(void)
 
 	std::cout << "first name : ";
 	std::getline(std::cin, first_name);
+	if (std::cin.eof())
+			std::cout << std::endl;
 	
 	std::cout << "last name : ";
 	std::getline(std::cin, last_name);
+	if (std::cin.eof())
+			std::cout << std::endl;
 
 	std::cout << "nickname : ";
 	std::getline(std::cin, nickname);
+	if (std::cin.eof())
+			std::cout << std::endl;
 
 	std::cout << "phone_number : ";
 	std::getline(std::cin, phone_number);
+	if (std::cin.eof())
+			std::cout << std::endl;
 
 	std::cout << "darkest_secret : ";
 	std::getline(std::cin, darkest_secret);
+	if (std::cin.eof())
+			std::cout << std::endl;
 
-	older_contact->add_contact(1, first_name, last_name, nickname, phone_number, darkest_secret);
+	new_contact.add_contact(first_name, last_name, nickname, phone_number, darkest_secret);
+	this->list_contact.push_front(new_contact);
+	if (this->list_contact.size() > 8)
+		while (this->list_contact.size() > 8)
+			this->list_contact.pop_back();
 }
 
 void	PhoneBook::print_contact(void)
 {
-	int	i;
+	int								i;
+	std::list<Contact>::iterator	it;
 
-	i = 0;
-	std::cout << "┌──────────┬──────────┬──────────┬──────────┐\n";
-	std::cout << "│    INDEX │    FIRST │     LAST │ NICKNAME │\n";
-	std::cout << "│          │     NAME │     NAME │          │\n";
-	std::cout << "└──────────┴──────────┴──────────┴──────────┘" << std::endl;
-	while (i < 8)
+	i = 1;
+	it = this->list_contact.end();
+	if (this->list_contact.size() > 0)
 	{
-		if (this->instance_contact[i].get_used())
-			this->instance_contact[i].print_content(i + 1);
-		i++;
+		it--;
+		while (it != this->list_contact.begin())
+		{
+			it->print_content(i);
+			i++;
+			it--;
+		}
+		it->print_content(i);
 	}
-	std::cout << "┌──────────┬──────────┬──────────┬──────────┐\n";
-	std::cout << "└──────────┴──────────┴──────────┴──────────┘" << std::endl;
 }
 
+void	PhoneBook::print_one_contact(int index)
+{
+	int								i;
+	std::list<Contact>::iterator	it;
+
+	i = 1;
+	it = this->list_contact.end();
+	if (this->list_contact.size() > 0)
+	{
+		it--;
+		while (it != this->list_contact.begin())
+		{
+			if (i == index)
+			{
+				it->print_all();
+				return ;
+			}
+			i++;
+			it--;
+		}
+		if (i == index)
+		{
+			it->print_all();
+			return ;
+		}
+	}	
+}
 
 void	PhoneBook::choice_index(void)
 {
-	int	index;
+	std::string	buff;
+	int			index;
 
-	index = -1;
-	std::cout << "choice index : ";
-	std::cin >> index;
-	std::cin.clear();
+	index = 0;
+	if (this->list_contact.size() > 0)
+	{
+		std::cout << "choice index : ";
+		std::getline(std::cin, buff);
+		if (std::cin.eof())
+			std::cout << std::endl;
+	}
+	if (!buff.find_first_not_of("0123456789"))
+		std::cout << "numeric argument required" << std::endl;
+	else
+	{
+		index = std::atoi(buff.c_str());
+		if (index < 1 || index > (int)this->list_contact.size())
+			std::cout << "index not found" << std::endl;
+		else
+			PhoneBook::print_one_contact(index);
+	}
 }
