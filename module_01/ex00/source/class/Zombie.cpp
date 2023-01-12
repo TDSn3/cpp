@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:10:00 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/11 17:19:48 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:44:16 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ void	Zombie::announce(void)
 
 Zombie	*newZombie(std::string name)
 {
-	
+	(void) name;
+	return (NULL);
 }
 
 void	randomChump(std::string name)
 {
-	
+	(void) name;
 }

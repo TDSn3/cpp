@@ -6,14 +6,24 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:32 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/11 17:18:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:45:47 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
 
-#include <header.h>
+/* ************************************************************************** */
+
+# ifndef INLCUDE_GUARD
+#  define INLCUDE_GUARD
+
+#  include <iostream>
+#  include <iomanip>
+
+# endif
+
+/* ************************************************************************** */
 
 class Zombie
 {
