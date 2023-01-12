@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:32 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/12 15:45:47 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:41:03 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 /* ************************************************************************** */
 
-# ifndef INLCUDE_GUARD
-#  define INLCUDE_GUARD
+# ifndef INCLUDE_GUARD
+#  define INCLUDE_GUARD
 
 #  include <iostream>
 #  include <iomanip>
@@ -30,16 +30,14 @@ class Zombie
 
 public:
 
-	Zombie(void);
+	Zombie(std::string const name);
 	~Zombie(void);
 
-	void	announce(void);
-	Zombie*	newZombie(std::string name);
-	void	randomChump(std::string name);
+	void	announce(void) const;
 
 private:
 
-	std::string _name;
+	std::string const	_name;
 
 };
 

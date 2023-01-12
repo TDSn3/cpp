@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:10:00 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/12 15:44:16 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:36:11 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 /*   Constructeur															  */
 /*                                                                            */
 /* ************************************************************************** */
-Zombie::Zombie(void)
+Zombie::Zombie(std::string const name) : _name(name)
 {
-//	std::cout << "Consructeur Zombie" << std::endl;
 	return ;
 }
 
@@ -30,22 +29,12 @@ Zombie::Zombie(void)
 /* ************************************************************************** */
 Zombie::~Zombie(void)
 {
-	std::cout << "Destructeur Zombie \"" << this->_name << "\"" << std::endl;
-	return ;
+	std::cout << "\033[31m" << "destructeur zombie \"" << this->_name << "\"" << "\033[00m" << std::endl;
 }
 
-void	Zombie::announce(void)
+/* ************************************************************************** */
+
+void	Zombie::announce(void) const
 {
 	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-Zombie	*newZombie(std::string name)
-{
-	(void) name;
-	return (NULL);
-}
-
-void	randomChump(std::string name)
-{
-	(void) name;
 }

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/12 15:46:15 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:48:38 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 /* ************************************************************************** */
 
-# ifndef INLCUDE_GUARD
-#  define INLCUDE_GUARD
+# ifndef INCLUDE_GUARD
+#  define INCLUDE_GUARD
 
 #  include <iostream>
 #  include <iomanip>
