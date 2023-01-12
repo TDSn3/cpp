@@ -6,14 +6,11 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/12 20:31:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/12 21:04:37 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
-
-static Zombie	*newZombie(std::string const name);
-static void	randomChump(std::string const name);
 
 int	main(void)
 {
@@ -42,19 +39,4 @@ int	main(void)
 	delete zombie_heap_3;
 
 	return (0);
-}
-
-static Zombie	*newZombie(std::string const name)
-{
-	Zombie	*new_zombie;
-
-	new_zombie = new Zombie(name);
-	return (new_zombie);
-}
-
-static void	randomChump(std::string const name)
-{
-	Zombie	new_zombie(name);
-
-	new_zombie.announce();
 }
