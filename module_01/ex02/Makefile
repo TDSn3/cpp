@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/01/13 10:42:06 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/01/13 10:56:09 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,15 +28,11 @@ CFLAGS		= -Wall -Wextra -Werror -std=c++98
 #                                                                              #
 # **************************************************************************** #
 
-I_HEADERS	= -I $(INC_DIR)
+I_HEADERS	= 
 
-HEADERS		= $(shell find include/ -type f)
+HEADERS		= 
 
-NAME_FILE	= $(addprefix class/,												\
-								Zombie											\
-			   )																\
-			   main																\
-			   zombieHorde														\
+NAME_FILE	= main
 
 SRC			= $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
