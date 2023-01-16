@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:24:12 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/13 14:44:48 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/16 08:10:27 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class HumanA
 
 public:
 
-	HumanA(Weapon &new_W);
+	HumanA(std::string name, Weapon &new_W);
 	~HumanA(void);
 
 	void	attack(void) const;
@@ -30,7 +30,7 @@ public:
 private:
 
 	std::string	_name;
-	Weapon		_weapon;
+	Weapon		&_weapon;
 
 };
 

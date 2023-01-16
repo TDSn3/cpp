@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/01/13 14:49:35 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/01/16 07:19:41 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ HEADERS		= $(shell find include/ -type f)
 NAME_FILE	= $(addprefix class/,												\
 								Weapon											\
 								HumanA											\
+								HumanB											\
 			   )																\
 			   main																\
 
@@ -53,9 +54,9 @@ OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 
 # **************************************************************************** #
 #                                                                              #
-#   Relink si les headers ou le Mafile sont changés                            #
+#   Relink si les headers ou le Makfile sont changés                           #
 #                                                                              #
-# ******************************vvvvvvvvvvvvvvvvvvv*************************** #
+# *****************************vvvvvvvvvvvvvvvvvvv**************************** #
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(HEADERS) Makefile
 	@ mkdir -p $(dir $@)

@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.hpp                                         :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/16 07:18:49 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/01/13 12:24:12 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/01/16 08:17:38 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_HPP
-# define HEADER_HPP
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
 
 # include <iostream>
 # include <iomanip>
-# include <stdio.h>
-# include <stdlib.h>
+# include <header.hpp>
 
-# include "./class/Weapon.hpp"
-# include "./class/HumanA.hpp"
-# include "./class/HumanB.hpp"
+class HumanB
+{
+
+public:
+
+	HumanB(void);
+	HumanB(std::string name);
+	~HumanB(void);
+
+	void	attack(void) const;
+	void	setWeapon(Weapon &new_W);
+
+private:
+
+	std::string	_name;
+	Weapon		*_weapon;
+
+};
 
 #endif

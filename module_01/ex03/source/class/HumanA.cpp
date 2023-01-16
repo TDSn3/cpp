@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:00:39 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/13 14:44:45 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/16 08:10:33 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 /*   Constructeur															  */
 /*                                                                            */
 /* ************************************************************************** */
-HumanA::HumanA(Weapon &new_W)
+HumanA::HumanA(std::string name, Weapon &new_W) : _weapon(new_W)
 {
 	std::cout << "Constructeur HumanA" << std::endl;
-	this->_weapon = new_W;
+	this->_name = name;
 	return ;
 }
 

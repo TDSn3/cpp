@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:32 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/13 14:53:44 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/16 07:43:20 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ class Weapon
 
 public:
 
-	Weapon();
-	~Weapon();
+	Weapon(void);
+	Weapon(std::string type);
+	~Weapon(void);
 
 	const std::string	&getType(void) const;
 	void				setType(std::string name);

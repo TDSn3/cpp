@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 16:10:00 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/16 07:43:53 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/01/13 14:00:39 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/01/16 08:18:13 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@
 /*   Constructeur															  */
 /*                                                                            */
 /* ************************************************************************** */
-Weapon::Weapon(void)
+HumanB::HumanB(void)
 {
+	std::cout << "Constructeur HumanB" << std::endl;
+	this->_weapon = NULL;
 	return ;
 }
 
-Weapon::Weapon(std::string type)
+HumanB::HumanB(std::string name)
 {
-	this->type = type;
+	std::cout << "Constructeur HumanB" << std::endl;
+	this->_name = name;
+	this->_weapon = NULL;
 	return ;
 }
 
@@ -33,19 +37,19 @@ Weapon::Weapon(std::string type)
 /*   Destructeur															  */
 /*                                                                            */
 /* ************************************************************************** */
-Weapon::~Weapon(void)
+HumanB::~HumanB(void)
 {
 	return ;
 }
 
 /* ************************************************************************** */
 
-const std::string	&Weapon::getType(void) const
+void	HumanB::attack(void) const
 {
-	return (this->type);
+	std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
 }
 
-void	Weapon::setType(std::string name)
+void	HumanB::setWeapon(Weapon &new_W)
 {
-	this->type = name;
+	this->_weapon = &new_W;
 }
