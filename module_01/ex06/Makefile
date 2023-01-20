@@ -6,11 +6,11 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/01/20 09:22:55 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/01/20 09:22:58 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= prog
+NAME		= HarlFilter
 
 SRC_DIR		= source/
 OBJ_DIR		= object/
