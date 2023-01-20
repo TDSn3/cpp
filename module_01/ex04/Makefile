@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/01/16 16:18:40 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/01/20 11:14:59 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	rm *.replace
+	rm -f *.replace
 
 re: fclean all
 

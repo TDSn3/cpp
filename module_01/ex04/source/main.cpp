@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/16 16:17:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:14:20 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	std::string		search_this(argv[2]);
 	std::string		replace_by(argv[3]);
 	std::string		stock_line;
-	std::ifstream	ifs(file_name);
+	std::ifstream	ifs(argv[1]);
 	int				pos;
 
 	if (!ifs.is_open())
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-	std::ofstream	ofs(file_name.append(".replace"));
+	std::ofstream	ofs(file_name.append(".replace").c_str());
 
 	if (!ofs.is_open())
 	{
