@@ -26,6 +26,7 @@ int main(int argc, char **argv)
 	std::ifstream	ifs(argv[1]);
 	int				pos;
 
+	pos = 0;
 	if (!ifs.is_open())
 	{
 		std::cout << "File not open" << std::endl;
@@ -50,7 +51,9 @@ int main(int argc, char **argv)
 				stock_line.erase(pos, search_this.size());
 				stock_line.insert(pos, replace_by);
 			}
-			pos = stock_line.find(search_this);
+			else
+				break ;
+			pos = stock_line.find(search_this, pos + replace_by.size());
 		}
 		ofs << stock_line;
 		if (!ifs.eof())
