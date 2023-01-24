@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:57:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/24 10:52:21 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/24 13:50:41 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
 	Fixed(const float nb);
 	Fixed(const Fixed &fixed_b);
 	~Fixed(void);
-	Fixed	&operator=(const Fixed &fixed_b);
+	Fixed	&operator = (const Fixed &right);
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
@@ -114,6 +114,12 @@ private:
 
 };
 
-std::ostream	&operator<<(std::ostream &ofs, const Fixed &x);
+std::ostream	&operator << (std::ostream &ofs, const Fixed &x);
+int				operator > (const Fixed &left, const Fixed &right);
+int				operator < (const Fixed &left, const Fixed &right);
+int				operator >= (const Fixed &left, const Fixed &right);
+int				operator <= (const Fixed &left, const Fixed &right);
+int				operator == (const Fixed &left, const Fixed &right);
+int				operator != (const Fixed &left, const Fixed &right);
 
 #endif
