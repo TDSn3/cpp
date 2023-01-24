@@ -6,17 +6,13 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/22 16:08:01 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/24 10:53:16 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <header.hpp>
 # include <iostream>
 # include <string>
-
-typedef int32_t fixed;
-
-fixed	float_to_fixed(float nb);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -31,15 +27,14 @@ Fixed::Fixed(void) : _size_fract(8)
 
 Fixed::Fixed(const int nb) : _size_fract(8)
 {
-	std::cout << "\033[32;02;03m" << "Constructor 2 called" << "\033[00m" << std::endl;
+	std::cout << "\033[32;02;03m" << "Int constructor called" << "\033[00m" << std::endl;
 	_nb = nb << this->_size_fract;
 }
 
 Fixed::Fixed(const float nb) : _size_fract(8)
 {
-	std::cout << "\033[32;02;03m" << "Constructor 3 called" << "\033[00m" << std::endl;
-	std::cout << nb << std::endl;
-	std::cout << (float_to_fixed(nb)) << std::endl;
+	std::cout << "\033[32;02;03m" << "Float constructor 3 called" << "\033[00m" << std::endl;
+	_nb = roundf(nb * 256.0f);
 }
 
 /*   COPY   ***************************************************************** */
@@ -64,20 +59,34 @@ Fixed::~Fixed(void)
 /*                                                                            */
 /*   Opérateur d'affectation												  */
 /*                                                                            */
-/*   Ce renvois lui même après avoir copié les valeurs de "fixed_b".		  */
-/*                                                                            */
 /* ************************************************************************** */
+
+/*   INTERNE   *************************************************************** */
+
 Fixed	&Fixed::operator=(const Fixed &fixed_b)
 {
 	std::cout << "\033[33;02;03m" << "Copy assignment operator called" << "\033[00m" << std::endl;
-	(void) fixed_b;
 	this->_nb = fixed_b.getRawBits();
 	return (*this);
 }
 
+/*   EXTERNE   *************************************************************** */
+
+std::ostream	&operator<<(std::ostream &ofs, const Fixed &x)
+{
+	ofs << x.toFloat();
+	return (ofs);
+}
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   MÉTHODE																  */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*   PUBLIC   *************************************************************** */
 
-int	Fixed::getRawBits(void) const
+int		Fixed::getRawBits(void) const
 {
 	std::cout << "\033[36;02;03m" << "getRawBits member function called" << "\033[00m" << std::endl;
 	return (this->_nb);
@@ -86,6 +95,16 @@ int	Fixed::getRawBits(void) const
 void	Fixed::setRawBits(int const raw)
 {
 	this->_nb = raw;
+}
+
+int		Fixed::toInt(void) const
+{
+	return (this->_nb >> this->_size_fract);
+}
+
+float	Fixed::toFloat(void) const
+{
+	return (this->_nb / 256.0f);
 }
 
 /*   PRIVATE   ************************************************************** */
@@ -125,10 +144,3 @@ void	Fixed::setRawBits(int const raw)
 
 /*   25429 / 256.0 = 99.333 												  */
 /* ************************************************************************** */
-
-fixed	float_to_fixed(float nb)
-{
-	std::cout << (nb * 256.0f) / 256.0f << std::endl;
-	return ((fixed)(roundf(nb * 256.0f)));
-}
-

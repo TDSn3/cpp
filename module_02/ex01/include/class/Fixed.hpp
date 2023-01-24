@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:57:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/22 11:25:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/24 10:52:21 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ public:
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
+	int		toInt(void) const;
+	float	toFloat(void) const;
 
 private:
 	
@@ -111,5 +113,7 @@ private:
 /* ************************************************************************** */
 
 };
+
+std::ostream	&operator<<(std::ostream &ofs, const Fixed &x);
 
 #endif
