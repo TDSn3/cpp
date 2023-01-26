@@ -93,7 +93,7 @@ void	ClapTrap::attack(const std::string &target)
 		<< "\033[33;01m"
 			<< this->_name
 				<< "\033[00m\033[33m"
-		<< " has no energy to attack"
+		<< " has no energy to attack."
 		<< "\033[00m" << std::endl;
 }
 void	ClapTrap::takeDamage(unsigned int amount)
@@ -111,13 +111,22 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	if (this->_energy_points > 0)
 	{
 		std::cout << "\033[34m"
-		<< "ClapTrap " << this->_name << " regains " << amount << " energy points."
+		<< "ClapTrap "
+		<< "\033[34;01m"
+			<< this->_name
+				<< "\033[00m\033[34m"
+		<< " regains " << amount << " hit points."
 		<< "\033[00m" << std::endl;
 		this->_energy_points--;
+		this->_hit_points += amount;
 	}
 	else
 		std::cout << "\033[33m"
-		<< "ClapTrap " << this->_name << " has no energy to repaire"
+		<< "ClapTrap "
+		<< "\033[34;01m"
+			<< this->_name
+				<< "\033[00m\033[34m"
+		<< " has no energy to repaire."
 		<< "\033[00m" << std::endl;
 }
 
