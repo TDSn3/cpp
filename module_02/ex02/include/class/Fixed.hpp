@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:57:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/24 15:48:15 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/26 08:51:41 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ public:
 	Fixed				operator ++(int useless);	// postfix // x++
 	Fixed				&operator --();				// préfix  // --x
 	Fixed				operator --(int useless);	// postfix // x--
-		
+
 	int					getRawBits(void) const;
 	void				setRawBits(int const raw);
 	int					toInt(void) const;
 	float				toFloat(void) const;
-	static Fixed			&min(Fixed &x, Fixed &y);
+	static Fixed		&min(Fixed &x, Fixed &y);
 	static const Fixed	&min(const Fixed &x, const Fixed &y);
-	static Fixed			&max(Fixed &x, Fixed &y);
+	static Fixed		&max(Fixed &x, Fixed &y);
 	static const Fixed	&max(const Fixed &x, const Fixed &y);
-	
+
 private:
 	
 	int					_nb;
