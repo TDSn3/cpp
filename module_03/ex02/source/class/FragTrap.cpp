@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 13:35:04 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/31 16:58:14 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:58:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@
 /*   Constructeur															  */
 /*                                                                            */
 /* ************************************************************************** */
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "\033[00;02;03m" << "ScavTrap : Default constructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[00;02;03m" << "FragTrap : Default constructor called" << "\033[00m" << std::endl;
 	this->_hit_points = 100;
-	this->_energy_points = 50;
-	this->_attack_damage = 20;
+	this->_energy_points = 100;
+	this->_attack_damage = 30;
 }
 
 /*   COPY   ***************************************************************** */
 
-ScavTrap::ScavTrap(const ScavTrap &ScavTrap_src) : ClapTrap(ScavTrap_src.get__name())
+FragTrap::FragTrap(const FragTrap &FragTrap_src) : ClapTrap(FragTrap_src.get__name())
 {
-	std::cout << "\033[32;02;03m" << "ScavTrap : Copy constructor called" << "\033[00m" << std::endl;
-	(void) ScavTrap_src;
+	std::cout << "\033[32;02;03m" << "FragTrap : Copy constructor called" << "\033[00m" << std::endl;
+	(void) FragTrap_src;
 }
 
 /* ************************************************************************** */
@@ -38,9 +38,9 @@ ScavTrap::ScavTrap(const ScavTrap &ScavTrap_src) : ClapTrap(ScavTrap_src.get__na
 /*   Destructeur															  */
 /*                                                                            */
 /* ************************************************************************** */
-ScavTrap::~ScavTrap(void)
+FragTrap::~FragTrap(void)
 {
-	std::cout << "\033[31;01m" << "ScavTrap : Destructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[31;01m" << "FragTrap : Destructor called" << "\033[00m" << std::endl;
 }
 
 /* ************************************************************************** */
@@ -51,9 +51,9 @@ ScavTrap::~ScavTrap(void)
 
 /*   INTERNE   *************************************************************** */
 
-ScavTrap	&ScavTrap::operator=(const ScavTrap &right)
+FragTrap	&FragTrap::operator=(const FragTrap &right)
 {
-	std::cout << "\033[33;02;03m" << "ScavTrap : Copy assignment operator called" << "\033[00m" << std::endl;
+	std::cout << "\033[33;02;03m" << "FragTrap : Copy assignment operator called" << "\033[00m" << std::endl;
 	(void) right;
 	return (*this);
 }
@@ -68,12 +68,12 @@ ScavTrap	&ScavTrap::operator=(const ScavTrap &right)
 
 /*   PUBLIC   *************************************************************** */
 
-void	ScavTrap::attack(const std::string &target)
+void	FragTrap::attack(const std::string &target)
 {
 	if (this->_energy_points > 0)
 	{
 		std::cout << "\033[33m"
-		<< "ScavTrap "
+		<< "FragTrap "
 		<< "\033[33;01m"
 			<< this->_name
 				<< "\033[00m\033[33m"
@@ -87,7 +87,7 @@ void	ScavTrap::attack(const std::string &target)
 	}
 	else
 		std::cout << "\033[33m"
-		<< "ScavTrap "
+		<< "FragTrap "
 		<< "\033[33;01m"
 			<< this->_name
 				<< "\033[00m\033[33m"
@@ -95,14 +95,14 @@ void	ScavTrap::attack(const std::string &target)
 		<< "\033[00m" << std::endl;
 }
 
-void	ScavTrap::guardGate(void)
+void	FragTrap::highFivesGuys(void)
 {
 	std::cout << "\033[33m"
-	<< "ScavTrap "
+	<< "FragTrap "
 	<< "\033[33;01m"
 			<< this->_name
 				<< "\033[00m\033[33m"
-	<< " is in Gate keeper mode."
+	<< " asks for high fives."
 	<< "\033[00m" << std::endl;
 }
 

@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 13:35:04 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/31 16:58:14 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/01/26 09:02:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <header.hpp>
+# include <iostream>
+# include <string>
 
 /* ************************************************************************** */
 /*                                                                            */
 /*   Constructeur															  */
 /*                                                                            */
 /* ************************************************************************** */
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+ClapTrap::ClapTrap(std::string name) : _name(name)
 {
-	std::cout << "\033[00;02;03m" << "ScavTrap : Default constructor called" << "\033[00m" << std::endl;
-	this->_hit_points = 100;
-	this->_energy_points = 50;
-	this->_attack_damage = 20;
+	std::cout << "\033[00;02;03m" << "ClapTrap : Default constructor called" << "\033[00m" << std::endl;
+	this->_hit_points = 10;
+	this->_energy_points = 10;
+	this->_attack_damage = 0;
 }
 
 /*   COPY   ***************************************************************** */
 
-ScavTrap::ScavTrap(const ScavTrap &ScavTrap_src) : ClapTrap(ScavTrap_src.get__name())
+ClapTrap::ClapTrap(const ClapTrap &ClapTrap_src)
 {
-	std::cout << "\033[32;02;03m" << "ScavTrap : Copy constructor called" << "\033[00m" << std::endl;
-	(void) ScavTrap_src;
+	std::cout << "\033[32;02;03m" << "ClapTrap : Copy constructor called" << "\033[00m" << std::endl;
+	(void) ClapTrap_src;
 }
 
 /* ************************************************************************** */
@@ -38,9 +40,9 @@ ScavTrap::ScavTrap(const ScavTrap &ScavTrap_src) : ClapTrap(ScavTrap_src.get__na
 /*   Destructeur															  */
 /*                                                                            */
 /* ************************************************************************** */
-ScavTrap::~ScavTrap(void)
+ClapTrap::~ClapTrap(void)
 {
-	std::cout << "\033[31;01m" << "ScavTrap : Destructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[31;01m" << "ClapTrap : Destructor called" << "\033[00m" << std::endl;
 }
 
 /* ************************************************************************** */
@@ -51,9 +53,9 @@ ScavTrap::~ScavTrap(void)
 
 /*   INTERNE   *************************************************************** */
 
-ScavTrap	&ScavTrap::operator=(const ScavTrap &right)
+ClapTrap	&ClapTrap::operator=(const ClapTrap &right)
 {
-	std::cout << "\033[33;02;03m" << "ScavTrap : Copy assignment operator called" << "\033[00m" << std::endl;
+	std::cout << "\033[33;02;03m" << "ClapTrap : Copy assignment operator called" << "\033[00m" << std::endl;
 	(void) right;
 	return (*this);
 }
@@ -68,12 +70,12 @@ ScavTrap	&ScavTrap::operator=(const ScavTrap &right)
 
 /*   PUBLIC   *************************************************************** */
 
-void	ScavTrap::attack(const std::string &target)
+void	ClapTrap::attack(const std::string &target)
 {
 	if (this->_energy_points > 0)
 	{
 		std::cout << "\033[33m"
-		<< "ScavTrap "
+		<< "ClapTrap "
 		<< "\033[33;01m"
 			<< this->_name
 				<< "\033[00m\033[33m"
@@ -87,7 +89,7 @@ void	ScavTrap::attack(const std::string &target)
 	}
 	else
 		std::cout << "\033[33m"
-		<< "ScavTrap "
+		<< "ClapTrap "
 		<< "\033[33;01m"
 			<< this->_name
 				<< "\033[00m\033[33m"
@@ -95,15 +97,61 @@ void	ScavTrap::attack(const std::string &target)
 		<< "\033[00m" << std::endl;
 }
 
-void	ScavTrap::guardGate(void)
+void	ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "\033[33m"
-	<< "ScavTrap "
+	std::cout << "\033[33;02m"
+	<< "ClapTrap "
 	<< "\033[33;01m"
-			<< this->_name
-				<< "\033[00m\033[33m"
-	<< " is in Gate keeper mode."
+		<< this->_name
+			<< "\033[00m\033[33;02m"
+	<< " take " << amount << " damages!" 
 	<< "\033[00m" << std::endl;
+	this->_hit_points -= amount;
+}
+
+void	ClapTrap::beRepaired(unsigned int amount)
+{
+	if (this->_energy_points > 0)
+	{
+		std::cout << "\033[34m"
+		<< "ClapTrap "
+		<< "\033[34;01m"
+			<< this->_name
+				<< "\033[00m\033[34m"
+		<< " regains " << amount << " hit points."
+		<< "\033[00m" << std::endl;
+		this->_energy_points--;
+		this->_hit_points += amount;
+	}
+	else
+		std::cout << "\033[33m"
+		<< "ClapTrap "
+		<< "\033[34;01m"
+			<< this->_name
+				<< "\033[00m\033[34m"
+		<< " has no energy to repaire."
+		<< "\033[00m" << std::endl;
+}
+
+std::string	ClapTrap::get__name(void) const
+{
+	return (this->_name);
+}
+
+int	ClapTrap::get__energy_points(void) const
+{
+	return (this->_energy_points);
+}
+
+/* static */ void	ClapTrap::fight(ClapTrap &attacker, ClapTrap &victim, int amount)
+{
+	if (attacker.get__energy_points() > 0)
+	{
+		attacker.attack(victim.get__name());
+		victim.takeDamage(amount);
+	}
+	else
+		attacker.attack(victim.get__name());
 }
 
 /*   PRIVATE   ************************************************************** */
