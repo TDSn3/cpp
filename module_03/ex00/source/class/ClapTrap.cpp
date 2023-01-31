@@ -105,6 +105,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 			<< "\033[00m\033[33;02m"
 	<< " take " << amount << " damages!" 
 	<< "\033[00m" << std::endl;
+	this->_hit_points -= amount;
 }
 void	ClapTrap::beRepaired(unsigned int amount)
 {
