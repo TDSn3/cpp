@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:57:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/02 11:04:34 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:31:47 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ public:
 
 	ClapTrap	&operator = (const ClapTrap &right);
 
-	void		attack(const std::string &target);
-	void		takeDamage(unsigned int amount);
-	void		beRepaired(unsigned int amount);
-	std::string	get__name(void) const;
-	int			get__energy_points(void) const;
-	static void	fight(ClapTrap &attacker, ClapTrap &victim, int amount);
+	void				attack(const std::string &target);
+	void				takeDamage(unsigned int amount);
+	void				beRepaired(unsigned int amount);
+	const std::string	get__name(void) const;
+	int					get__hit_points(void) const;
+	int					get__energy_points(void) const;
+	int					get__attack_damage(void) const;
+	static void			fight(ClapTrap &attacker, ClapTrap &victim, int amount);
 
 protected:
 

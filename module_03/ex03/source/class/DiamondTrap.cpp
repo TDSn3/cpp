@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 19:38:35 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/02 11:22:37 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/02 19:16:40 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Frag
 DiamondTrap::DiamondTrap(const DiamondTrap &DiamondTrap_src) : ClapTrap(DiamondTrap_src.get__name() + "_clap_name"), FragTrap(DiamondTrap_src.get__name()), ScavTrap(DiamondTrap_src.get__name()), _name(DiamondTrap_src.get__name())
 {
 	std::cout << "\033[32;02;03m" << "DiamondTrap : Copy constructor called" << "\033[00m" << std::endl;
-	(void) DiamondTrap_src;
+	this->_hit_points = DiamondTrap_src.get__hit_points();
+	this->_energy_points = DiamondTrap_src.get__energy_points();
+	this->_attack_damage = DiamondTrap_src.get__attack_damage();
 }
 
 /* ************************************************************************** */
@@ -54,7 +56,9 @@ DiamondTrap::~DiamondTrap(void)
 DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &right)
 {
 	std::cout << "\033[33;02;03m" << "DiamondTrap : Copy assignment operator called" << "\033[00m" << std::endl;
-	(void) right;
+	this->_hit_points = right.get__hit_points();
+	this->_energy_points = right.get__energy_points();
+	this->_attack_damage = right.get__attack_damage();
 	return (*this);
 }
 
@@ -70,11 +74,12 @@ DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &right)
 
 void	DiamondTrap::whoAmI(void)
 {
-	std::cout << "DiamondTrap : " << this->_name << std::endl;
-	std::cout << "ClapTrap    : " << ClapTrap::_name << std::endl;
-//	std::cout << this->_hit_points << std::endl;
-//	std::cout << this->_energy_points << std::endl;
-//	std::cout << this->_attack_damage << std::endl;
+	std::cout << "DiamondTrap   : " << this->_name << std::endl;
+	std::cout << "Hit points    : " << this->_hit_points << std::endl;
+	std::cout << "Energy points : " << this->_energy_points << std::endl;
+	std::cout << "Attack damage : " << this->_attack_damage << std::endl;
+
+	std::cout << "\nClapTrap      : " << ClapTrap::_name << std::endl;
 }
 
 std::string	DiamondTrap::get__name(void) const

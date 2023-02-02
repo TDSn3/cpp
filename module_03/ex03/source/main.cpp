@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/02 11:01:40 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/02 19:09:24 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ int main(void)
 	wait_return();
 
 	a.whoAmI();
-//	for (int i = 0; i < 105; i++)
-//		a.attack("target");
-//	a.highFivesGuys();
 
 	wait_return();
 
