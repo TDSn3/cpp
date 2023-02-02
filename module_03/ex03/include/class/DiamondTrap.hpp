@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:05:48 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/31 20:42:17 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:22:08 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ public:
 
 	DiamondTrap	&operator = (const DiamondTrap &right);
 
-	void	whoAmI(void);
+	using		ScavTrap::attack;
+	void		whoAmI(void);
+	std::string	get__name(void) const;
 
 protected:
 

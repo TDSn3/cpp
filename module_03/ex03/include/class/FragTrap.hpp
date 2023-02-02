@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 13:26:06 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/31 20:23:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/02 10:55:28 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ public:
 
 	void	attack(const std::string &target);
 	void	highFivesGuys(void);
+	int		get__hit_points(void) const;
+	int		get__attack_damage(void) const;
 
 protected:
 

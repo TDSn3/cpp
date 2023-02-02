@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/01/31 16:54:14 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/02 11:13:33 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR		= include/
 
 CC			= g++
 
-CFLAGS		= -Wall -Wextra -Werror -std=c++98
+CFLAGS		= -Wall -Wextra -Werror -Wshadow -std=c++98
 
 # **************************************************************************** #
 #                                                                              #
@@ -36,6 +36,7 @@ NAME_FILE	= $(addprefix class/,												\
 								ClapTrap										\
 								ScavTrap										\
 								FragTrap										\
+								DiamondTrap										\
 			   )																\
 			   main																\
 

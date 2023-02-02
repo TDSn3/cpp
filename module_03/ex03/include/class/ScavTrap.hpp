@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 13:26:06 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/31 20:42:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:04:45 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ public:
 
 	ScavTrap	&operator = (const ScavTrap &right);
 
-	virtual void	attack(const std::string &target);
-	void			guardGate(void);
+	void	attack(const std::string &target);
+	void	guardGate(void);
 
 protected:
 

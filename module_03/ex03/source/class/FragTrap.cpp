@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 13:35:04 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/31 16:58:04 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/02 10:52:10 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,16 @@ void	FragTrap::highFivesGuys(void)
 				<< "\033[00m\033[33m"
 	<< " asks for high fives."
 	<< "\033[00m" << std::endl;
+}
+
+int FragTrap::get__hit_points(void) const
+{
+	return (this->_hit_points);
+}
+
+int FragTrap::get__attack_damage(void) const
+{
+	return (this->_attack_damage);
 }
 
 /*   PRIVATE   ************************************************************** */

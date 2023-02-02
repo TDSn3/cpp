@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/31 16:57:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:01:40 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@ void	wait_return(void);
 
 int main(void)
 {
-	FragTrap a("Guerrier villageois");
+	DiamondTrap a("Paladin");
 
 	wait_return();
 
-	for (int i = 0; i < 105; i++)
-		a.attack("target");
-	a.highFivesGuys();
+	a.whoAmI();
+//	for (int i = 0; i < 105; i++)
+//		a.attack("target");
+//	a.highFivesGuys();
 
 	wait_return();
 
+	a.attack("Ennemi");
 	return (0);
 }
 
