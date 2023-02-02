@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 13:35:04 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/31 16:58:14 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:22:46 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 ScavTrap::ScavTrap(const ScavTrap &ScavTrap_src) : ClapTrap(ScavTrap_src.get__name())
 {
 	std::cout << "\033[32;02;03m" << "ScavTrap : Copy constructor called" << "\033[00m" << std::endl;
-	(void) ScavTrap_src;
+	this->_hit_points = ScavTrap_src.get__hit_points();
+	this->_energy_points = ScavTrap_src.get__energy_points();
+	this->_attack_damage = ScavTrap_src.get__attack_damage();
 }
 
 /* ************************************************************************** */
@@ -54,7 +56,9 @@ ScavTrap::~ScavTrap(void)
 ScavTrap	&ScavTrap::operator=(const ScavTrap &right)
 {
 	std::cout << "\033[33;02;03m" << "ScavTrap : Copy assignment operator called" << "\033[00m" << std::endl;
-	(void) right;
+	this->_hit_points = right.get__hit_points();
+	this->_energy_points = right.get__energy_points();
+	this->_attack_damage = right.get__attack_damage();
 	return (*this);
 }
 
