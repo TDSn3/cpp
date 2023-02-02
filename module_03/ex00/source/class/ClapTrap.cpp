@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.cpp                                          :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/01/26 09:02:04 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:59:43 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ ClapTrap::ClapTrap(std::string name) : _name(name)
 
 /*   COPY   ***************************************************************** */
 
-ClapTrap::ClapTrap(const ClapTrap &ClapTrap_src)
+ClapTrap::ClapTrap(const ClapTrap &ClapTrap_src) : _name(ClapTrap_src.get__name())
 {
 	std::cout << "\033[32;02;03m" << "Copy constructor called" << "\033[00m" << std::endl;
-	(void) ClapTrap_src;
+	this->_hit_points = ClapTrap_src.get__hit_points();
+	this->_energy_points = ClapTrap_src.get__energy_points();
+	this->_attack_damage = ClapTrap_src.get__attack_damage();
 }
 
 /* ************************************************************************** */
@@ -56,7 +58,9 @@ ClapTrap::~ClapTrap(void)
 ClapTrap	&ClapTrap::operator=(const ClapTrap &right)
 {
 	std::cout << "\033[33;02;03m" << "Copy assignment operator called" << "\033[00m" << std::endl;
-	(void) right;
+	this->_hit_points = right.get__hit_points();
+	this->_energy_points = right.get__energy_points();
+	this->_attack_damage = right.get__attack_damage();
 	return (*this);
 }
 
@@ -131,14 +135,24 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		<< "\033[00m" << std::endl;
 }
 
-std::string	ClapTrap::get__name(void)
+const std::string	ClapTrap::get__name(void) const
 {
 	return (this->_name);
 }
 
-int	ClapTrap::get__energy_points(void)
+int	ClapTrap::get__hit_points(void) const
+{
+	return (this->_hit_points);
+}
+
+int	ClapTrap::get__energy_points(void) const
 {
 	return (this->_energy_points);
+}
+
+int	ClapTrap::get__attack_damage(void) const
+{
+	return (this->_attack_damage);
 }
 
 /* static */ void	ClapTrap::fight(ClapTrap &attacker, ClapTrap &victim, int amount)
