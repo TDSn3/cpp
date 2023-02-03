@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/02 20:17:08 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/03 14:59:48 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@
 # include "./class/Animal.hpp"
 # include "./class/Dog.hpp"
 # include "./class/Cat.hpp"
+# include "./class/WrongAnimal.hpp"
+# include "./class/WrongCat.hpp"
 
 #endif

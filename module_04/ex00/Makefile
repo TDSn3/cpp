@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/02 20:16:57 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/03 14:57:45 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ NAME_FILE	= $(addprefix class/,												\
 								Animal											\
 								Dog												\
 								Cat												\
+								WrongAnimal										\
+								WrongCat										\
 			   )																\
 			   main																\
 
