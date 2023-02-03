@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/02 20:52:29 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:43:33 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ Cat::Cat(void) : Animal("Cat")
 Cat::Cat(const Cat &src) : Animal("Cat")
 {
 	std::cout << "\033[32;02;03m" << "Cat : Copy constructor called" << "\033[00m" << std::endl;
-	(void) src;
-//	this->_type = src.getType();
+	this->_type = src.getType();
 }
 
 /* ************************************************************************** */

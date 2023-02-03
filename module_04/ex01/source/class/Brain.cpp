@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/03 19:43:21 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/03 19:25:48 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/03 20:20:19 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <header.hpp>
+#include <header.hpp>
 
 /* ************************************************************************** */
 /*                                                                            */
 /*   CONSTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-Dog::Dog(void) : Animal("Dog")
+Brain::Brain(void)
 {
-	std::cout << "\033[00;02;03m" << "Dog : Default constructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[00;02;03m" << "Brain : Default constructor called" << "\033[00m" << std::endl;
 }
 
 /*   COPY CONSTRUCTEUR   **************************************************** */
 
-Dog::Dog(const Dog &src) : Animal("Dog")
+Brain::Brain(const Brain &src)
 {
-	std::cout << "\033[32;02;03m" << "Dog : Copy constructor called" << "\033[00m" << std::endl;
-	this->_type = src.getType();
+	std::cout << "\033[32;02;03m" << "Brain : Copy constructor called" << "\033[00m" << std::endl;
+	(void) src;
 }
 
 /* ************************************************************************** */
@@ -35,9 +35,9 @@ Dog::Dog(const Dog &src) : Animal("Dog")
 /*   DESTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-Dog::~Dog(void)
+Brain::~Brain(void)
 {
-	std::cout << "\033[31;01m" << "Dog : Destructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[31;01m" << "Brain : Destructor called" << "\033[00m" << std::endl;
 }
 
 /* ************************************************************************** */
@@ -48,10 +48,10 @@ Dog::~Dog(void)
 
 /*   OPÉRATEUR INTERNE   **************************************************** */
 
-Dog	&Dog::operator=(const Dog &right)
+Brain		&Brain::operator=(const Brain &right)
 {
-	std::cout << "\033[33;02;03m" << "Dog : Copy assignment operator called" << "\033[00m" << std::endl;
-	this->_type = right.getType();
+	std::cout << "\033[33;02;03m" << "Brain : Copy assignment operator called" << "\033[00m" << std::endl;
+	(void) right;
 	return (*this);
 }
 
@@ -65,9 +65,10 @@ Dog	&Dog::operator=(const Dog &right)
 
 /*   MÉTHODE PUBLIC   ******************************************************* */
 
-void	Dog::makeSound(void) const
+void	Brain::init_ideas(std::string one_idea)
 {
-	std::cout << this->_type << " : \"Ouaf ouaf !\"" << std::endl;
+	for (int i = 0; i < 100; i++)
+		this->ideas[i] = one_idea;
 }
 
 /*   MÉTHODE PRIVATE   ****************************************************** */

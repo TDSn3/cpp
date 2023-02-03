@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/03 19:43:21 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/03 22:20:46 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <header.hpp>
+#include <header.hpp>
 
 /* ************************************************************************** */
 /*                                                                            */
 /*   CONSTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-Dog::Dog(void) : Animal("Dog")
+Cat::Cat(void) : Animal("Cat")
 {
-	std::cout << "\033[00;02;03m" << "Dog : Default constructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[00;02;03m" << "Cat : Default constructor called" << "\033[00m" << std::endl;
+	this->_own_brain = new Brain();
+	this->_own_brain->init_ideas("fish");
 }
 
 /*   COPY CONSTRUCTEUR   **************************************************** */
 
-Dog::Dog(const Dog &src) : Animal("Dog")
+Cat::Cat(const Cat &src) : Animal("Cat")
 {
-	std::cout << "\033[32;02;03m" << "Dog : Copy constructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[32;02;03m" << "Cat : Copy constructor called" << "\033[00m" << std::endl;
 	this->_type = src.getType();
+	this->_own_brain = new Brain();
+	this->_own_brain->init_ideas("fish");
 }
 
 /* ************************************************************************** */
@@ -35,9 +39,10 @@ Dog::Dog(const Dog &src) : Animal("Dog")
 /*   DESTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-Dog::~Dog(void)
+Cat::~Cat(void)
 {
-	std::cout << "\033[31;01m" << "Dog : Destructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[31;01m" << "Cat : Destructor called" << "\033[00m" << std::endl;
+	delete this->_own_brain;
 }
 
 /* ************************************************************************** */
@@ -48,9 +53,9 @@ Dog::~Dog(void)
 
 /*   OPÉRATEUR INTERNE   **************************************************** */
 
-Dog	&Dog::operator=(const Dog &right)
+Cat	&Cat::operator=(const Cat &right)
 {
-	std::cout << "\033[33;02;03m" << "Dog : Copy assignment operator called" << "\033[00m" << std::endl;
+	std::cout << "\033[33;02;03m" << "Cat : Copy assignment operator called" << "\033[00m" << std::endl;
 	this->_type = right.getType();
 	return (*this);
 }
@@ -65,9 +70,9 @@ Dog	&Dog::operator=(const Dog &right)
 
 /*   MÉTHODE PUBLIC   ******************************************************* */
 
-void	Dog::makeSound(void) const
+void	Cat::makeSound(void) const
 {
-	std::cout << this->_type << " : \"Ouaf ouaf !\"" << std::endl;
+	std::cout << this->_type << " : \"Miaou.\"" << std::endl;
 }
 
 /*   MÉTHODE PRIVATE   ****************************************************** */
