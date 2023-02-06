@@ -1,0 +1,119 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/06 13:46:33 by tda-silv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include <header.hpp>
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   CONSTRUCTEUR															  */
+/*                                                                            */
+/* ************************************************************************** */
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
+{
+	std::cout << "\033[00;02;03m" << "Bureaucrat : Default constructor called" << "\033[00m" << std::endl;
+	this->_grade = grade;
+}
+
+/*   COPY CONSTRUCTEUR   **************************************************** */
+
+Bureaucrat::Bureaucrat(const Bureaucrat &src)
+{
+	std::cout << "\033[32;02;03m" << "Bureaucrat : Copy constructor called" << "\033[00m" << std::endl;
+	(void) src;
+}
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   DESTRUCTEUR															  */
+/*                                                                            */
+/* ************************************************************************** */
+Bureaucrat::~Bureaucrat(void)
+{
+	std::cout << "\033[31;01m" << "Bureaucrat : Destructor called" << "\033[00m" << std::endl;
+}
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   OPÉRATEUR																  */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   OPÉRATEUR INTERNE   **************************************************** */
+
+Bureaucrat		&Bureaucrat::operator = (const Bureaucrat &right)
+{
+	std::cout << "\033[33;02;03m" << "Bureaucrat : Copy assignment operator called" << "\033[00m" << std::endl;
+	(void) right;
+	return (*this);
+}
+
+Bureaucrat		&Bureaucrat::operator ++ (void)
+{
+	--(this->_grade);
+	return (*this);
+}
+
+Bureaucrat		Bureaucrat::operator ++ (int useless)
+{
+	Bureaucrat	return_Bureaucrat(this->get_name(), 150);
+
+	return_Bureaucrat = *this;
+	(void) useless;
+	(this->_grade)--;
+	return (return_Bureaucrat);
+}
+
+Bureaucrat		&Bureaucrat::operator -- (void)
+{
+	++(this->_grade);
+	return (*this);
+}
+
+Bureaucrat		Bureaucrat::operator -- (int useless)
+{
+	Bureaucrat	return_Bureaucrat("pointer", 150);
+
+	(void) useless;
+	return_Bureaucrat = *this;
+	(this->_grade)++;
+	return (return_Bureaucrat);
+}
+
+/*   OPÉRATEUR EXTERNE   **************************************************** */
+
+std::ostream	&operator << (std::ostream &left, const Bureaucrat &right)
+{
+	left << right.get_name() << ", bureaucrat grade " << right.get_grade() << ".";
+	return (left);
+}
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   MÉTHODE																  */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   MÉTHODE PUBLIC   ******************************************************* */
+
+const std::string	Bureaucrat::get_name(void) const
+{
+	return (this->_name);
+}
+
+int					Bureaucrat::get_grade(void) const
+{
+	return (this->_grade);	
+}
+
+/*   MÉTHODE PRIVATE   ****************************************************** */
+
+/* ************************************************************************** */

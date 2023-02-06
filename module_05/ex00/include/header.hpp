@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   header.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 13:26:06 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/06 16:00:40 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/06 13:00:46 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef HEADER_HPP
+# define HEADER_HPP
 
 # include <iostream>
 # include <string>
-# include "ClapTrap.hpp"
 
-class FragTrap : public virtual ClapTrap
-{
-
-public:
-
-	FragTrap(std::string name);
-	FragTrap(const FragTrap &FragTrap_src);
-	~FragTrap(void);
-
-	FragTrap	&operator = (const FragTrap &right);
-
-	void	attack(const std::string &target);
-	void	highFivesGuys(void);
-
-protected:
-
-private:
-
-};
+# include "./class/Bureaucrat.hpp"
 
 #endif

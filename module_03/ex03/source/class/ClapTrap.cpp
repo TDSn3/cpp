@@ -31,7 +31,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name)
 
 ClapTrap::ClapTrap(const ClapTrap &ClapTrap_src) : _name(ClapTrap_src.get__name())
 {
-	std::cout << "\033[32;02;03m" << "Copy constructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[32;02;03m" << "ClapTrap : Copy constructor called" << "\033[00m" << std::endl;
 	this->_hit_points = ClapTrap_src.get__hit_points();
 	this->_energy_points = ClapTrap_src.get__energy_points();
 	this->_attack_damage = ClapTrap_src.get__attack_damage();
@@ -44,7 +44,7 @@ ClapTrap::ClapTrap(const ClapTrap &ClapTrap_src) : _name(ClapTrap_src.get__name(
 /* ************************************************************************** */
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "\033[31;01m" << "Destructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[31;01m" << "ClapTrap : Destructor called" << "\033[00m" << std::endl;
 }
 
 /* ************************************************************************** */
@@ -57,7 +57,7 @@ ClapTrap::~ClapTrap(void)
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &right)
 {
-	std::cout << "\033[33;02;03m" << "Copy assignment operator called" << "\033[00m" << std::endl;
+	std::cout << "\033[33;02;03m" << "ClapTrap : Copy assignment operator called" << "\033[00m" << std::endl;
 	this->_hit_points = right.get__hit_points();
 	this->_energy_points = right.get__energy_points();
 	this->_attack_damage = right.get__attack_damage();

@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/02 11:13:33 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/06 15:28:57 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_DIR		= source/
 OBJ_DIR		= object/
 INC_DIR		= include/
 
-CC			= g++
+CC			= c++
 
 CFLAGS		= -Wall -Wextra -Werror -Wshadow -std=c++98
 

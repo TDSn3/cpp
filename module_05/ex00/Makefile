@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/06 15:27:14 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/06 15:26:45 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR		= include/
 
 CC			= c++
 
-CFLAGS		= -Wall -Wextra -Werror -std=c++98
+CFLAGS		= -Wall -Wextra -Werror -Wshadow -Wconversion -std=c++98
 
 # **************************************************************************** #
 #                                                                              #
@@ -33,10 +33,7 @@ I_HEADERS	= -I $(INC_DIR)
 HEADERS		= $(shell find include/ -type f)
 
 NAME_FILE	= $(addprefix class/,												\
-								Animal											\
-								Dog												\
-								Cat												\
-								Brain											\
+								Bureaucrat										\
 			   )																\
 			   main																\
 
