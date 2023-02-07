@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/06 13:46:33 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:57:12 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
 	std::cout << "\033[00;02;03m" << "Bureaucrat : Default constructor called" << "\033[00m" << std::endl;
+	if (grade < 1)
+		throw (GradeTooLowException());
+	else if (grade > 150)
+		throw (GradeTooHighException());
 	this->_grade = grade;
 }
 
@@ -58,6 +62,8 @@ Bureaucrat		&Bureaucrat::operator = (const Bureaucrat &right)
 
 Bureaucrat		&Bureaucrat::operator ++ (void)
 {
+	if (this->_grade - 1 < 1)
+		throw (GradeTooLowException());
 	--(this->_grade);
 	return (*this);
 }
@@ -68,12 +74,16 @@ Bureaucrat		Bureaucrat::operator ++ (int useless)
 
 	return_Bureaucrat = *this;
 	(void) useless;
+	if (this->_grade - 1 < 1)
+		throw (GradeTooLowException());
 	(this->_grade)--;
 	return (return_Bureaucrat);
 }
 
 Bureaucrat		&Bureaucrat::operator -- (void)
 {
+	if (this->_grade + 1 > 150)
+		throw (GradeTooHighException());
 	++(this->_grade);
 	return (*this);
 }
@@ -84,6 +94,8 @@ Bureaucrat		Bureaucrat::operator -- (int useless)
 
 	(void) useless;
 	return_Bureaucrat = *this;
+	if (this->_grade + 1 > 150)
+		throw (GradeTooHighException());
 	(this->_grade)++;
 	return (return_Bureaucrat);
 }
@@ -112,6 +124,16 @@ const std::string	Bureaucrat::get_name(void) const
 int					Bureaucrat::get_grade(void) const
 {
 	return (this->_grade);	
+}
+
+/* static */void	Bureaucrat::GradeTooHighException::print_error(void)
+{
+	std::cout << "Grade too high exception!" << std::endl;
+}
+
+/* static */void	Bureaucrat::GradeTooLowException::print_error(void)
+{
+	std::cout << "Grade too low exception!" << std::endl;
 }
 
 /*   MÉTHODE PRIVATE   ****************************************************** */

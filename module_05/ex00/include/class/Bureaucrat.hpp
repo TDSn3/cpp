@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:57:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/06 13:40:52 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:39:16 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,25 @@
 
 # include <iostream>
 # include <string>
+# include <exception>
 
 class Bureaucrat
 {
-
 public:
+
+	class GradeTooHighException : public std::exception
+	{
+		public :
+
+		static void	print_error(void);
+	};
+
+	class GradeTooLowException : public std::exception
+	{
+		public :
+
+		static void	print_error(void);
+	};
 
 	Bureaucrat(std::string name, int grade);
 	Bureaucrat(const Bureaucrat &src);
@@ -39,7 +53,6 @@ private:
 
 	const std::string	_name;
 	int 				_grade;
-
 };
 
 std::ostream			&operator << (std::ostream &left, const Bureaucrat &right);

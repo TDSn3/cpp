@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/06 14:00:53 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/07 12:03:19 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,32 @@
 
 int main(void)
 {
-	Bureaucrat	a("Alfred", 150);
+	try
+	{
+		Bureaucrat	a("Alfred", 150);
 
-	std::cout << a.get_name() << "\n" << a.get_grade() << std::endl;
-	a++;
-	std::cout << a.get_name() << "\n" << a.get_grade() << std::endl;
+		std::cout << a << std::endl;
+		a++;
+		std::cout << a << std::endl;
+		a--;
+		std::cout << a << std::endl;
+		a--;
+		std::cout << a << std::endl;
+		a--;
+		std::cout << a << std::endl;
+	}
+	catch (Bureaucrat::GradeTooLowException &e)
+	{
+		e.print_error();
+	}
+	catch (Bureaucrat::GradeTooHighException &e)
+	{
+		e.print_error();
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception!" <<std::endl;
+	}
 	return (0);
 }
 
@@ -31,5 +52,3 @@ int main(void)
 //	<< "\033[00m" << std::endl;
 //	std::cin.get();
 //}
-
-g++ ->>>> c++
