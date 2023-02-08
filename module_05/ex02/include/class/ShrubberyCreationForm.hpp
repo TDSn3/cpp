@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:55:25 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 16:19:42 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:51:56 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ public:
 
 	ShrubberyCreationForm	&operator = (const ShrubberyCreationForm &right);
 	std::string	get_target() const;
-	void	action(void);
+	void	action(void) const;
 
 protected:
 

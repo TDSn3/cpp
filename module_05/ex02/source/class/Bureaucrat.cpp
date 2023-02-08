@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 17:22:46 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:55:18 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void				Bureaucrat::executeForm(Form const &form)
 	try
 	{
 		form.execute(*this);
+		form.action();
 		std::cout << this->_name << " executed " << form.get_name() << std::endl;
 	}
 	catch (Form::ExecutionNotPossible &e)

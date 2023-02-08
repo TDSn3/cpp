@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 17:57:44 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:55:51 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int main(void)
 			tom.executeForm(a);
 			tom.signForm(a);
 			tom.executeForm(a);
-			a.action();
 		}
 		{
 			Bureaucrat				tom("Tom", 1);
@@ -36,7 +35,6 @@ int main(void)
 			tom.executeForm(a);
 			tom.signForm(a);
 			tom.executeForm(a);
-			a.action();
 		}
 		{
 			Bureaucrat				tom("Tom", 1);
@@ -46,7 +44,6 @@ int main(void)
 			tom.executeForm(a);
 			tom.signForm(a);
 			tom.executeForm(a);
-			a.action();
 		}
 		{
 			Bureaucrat				tom("Tom", 1);
@@ -56,7 +53,6 @@ int main(void)
 			tom.executeForm(*a);
 			tom.signForm(*a);
 			tom.executeForm(*a);
-			a->action();
 			delete a;
 		}
 		{
@@ -67,7 +63,6 @@ int main(void)
 			tom.executeForm(a);
 			tom.signForm(a);
 			tom.executeForm(a);
-			a.action();
 		}
 		{
 			Bureaucrat				tom("Tom", 150);
@@ -77,7 +72,6 @@ int main(void)
 			tom.executeForm(a);
 			tom.signForm(a);		// <--- throw exception
 			tom.executeForm(a);		// x
-			a.action();				// x
 		}
 	}
 	catch (Bureaucrat::GradeTooLowException &e)

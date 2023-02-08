@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:49:33 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 17:53:53 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:52:19 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ std::string	ShrubberyCreationForm::get_target() const
 	return (this->_target);
 }
 
-void	ShrubberyCreationForm::action(void)
+void	ShrubberyCreationForm::action(void) const
 {
 	std::ofstream	ofs((this->_target + "_shrubbery").c_str());
 

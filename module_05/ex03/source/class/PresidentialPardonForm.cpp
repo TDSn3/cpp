@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:50:19 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 16:23:07 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 22:41:28 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*   CONSTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("PresidentialPardonForm", 25, 5),  _target(target)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("presidential pardon", 25, 5),  _target(target)
 {
 	std::cout << "\033[00;02;03m" << "PresidentialPardonForm : Default constructor called" << "\033[00m" << std::endl;
 }

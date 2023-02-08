@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:40:24 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 17:53:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:52:26 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ std::string	RobotomyRequestForm::get_target() const
 	return (this->_target);
 }
 
-void	RobotomyRequestForm::action(void)
+void	RobotomyRequestForm::action(void) const
 {
 	int	i_random;
 	

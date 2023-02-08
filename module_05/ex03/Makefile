@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/08 18:08:14 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/08 21:58:59 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ NAME_FILE	= $(addprefix class/,												\
 								ShrubberyCreationForm							\
 								RobotomyRequestForm								\
 								PresidentialPardonForm							\
+								Intern											\
 			   )																\
 			   main																\
 

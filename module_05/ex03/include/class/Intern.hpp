@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:09:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 18:13:43 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 22:44:58 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <exception>
 # include "Form.hpp"
 
-class Intern : public Form
+class Intern
 {
 public:
 
-	Intern(std::string target);
+	Intern(void);
 	Intern(const Intern &src);
 	~Intern(void);
 
@@ -34,6 +34,7 @@ protected:
 
 private:
 
+	Form	*_tab[3];
 };
 
 #endif

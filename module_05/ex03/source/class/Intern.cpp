@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 15:50:19 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 21:52:29 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/08 20:32:39 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/08 22:57:39 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 /*   CONSTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("PresidentialPardonForm", 25, 5),  _target(target)
+Intern::Intern(void)
 {
-	std::cout << "\033[00;02;03m" << "PresidentialPardonForm : Default constructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[00;02;03m" << "Intern : Default constructor called" << "\033[00m" << std::endl;
 }
 
 /*   COPY CONSTRUCTEUR   **************************************************** */
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : Form(src.get_name(), src.get_sign_grade(), src.get_exec_grade()), _target(src.get_target())
+Intern::Intern(const Intern &src)
 {
-	std::cout << "\033[32;02;03m" << "PresidentialPardonForm : Copy constructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[32;02;03m" << "Intern : Copy constructor called" << "\033[00m" << std::endl;
 	(void) src;
 }
 
@@ -35,9 +35,9 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src
 /*   DESTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-PresidentialPardonForm::~PresidentialPardonForm(void)
+Intern::~Intern(void)
 {
-	std::cout << "\033[31;01m" << "PresidentialPardonForm : Destructor called" << "\033[00m" << std::endl;
+	std::cout << "\033[31;01m" << "Intern : Destructor called" << "\033[00m" << std::endl;
 }
 
 /* ************************************************************************** */
@@ -48,11 +48,44 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 
 /*   OPÉRATEUR INTERNE   **************************************************** */
 
-PresidentialPardonForm		&PresidentialPardonForm::operator = (const PresidentialPardonForm &right)
+Intern		&Intern::operator = (const Intern &right)
 {
-	std::cout << "\033[33;02;03m" << "PresidentialPardonForm : Copy assignment operator called" << "\033[00m" << std::endl;
+	std::cout << "\033[33;02;03m" << "Intern : Copy assignment operator called" << "\033[00m" << std::endl;
 	(void) right;
 	return (*this);
+}
+
+Form	*Intern::makeForm(std::string form_name, std::string form_target)
+{
+	int	i;
+	int	stock;
+
+	i = 0;
+	stock = -1;
+
+	this->_tab[0] = new PresidentialPardonForm(form_target);
+	this->_tab[1] = new RobotomyRequestForm(form_target);
+	this->_tab[2] = new ShrubberyCreationForm(form_target);
+
+	while (i < 3)
+	{
+		if (this->_tab[i]->get_name() == form_name)
+		{
+			stock = i;
+			i++;
+			continue ;
+		}
+		delete this->_tab[i];
+		i++;
+	}
+
+	if (stock != -1)
+		return (this->_tab[stock]);
+	else
+	{
+		std::cout << "Form do not exist!" << std::endl;
+		return (NULL);
+	}
 }
 
 /*   OPÉRATEUR EXTERNE   **************************************************** */
@@ -64,17 +97,6 @@ PresidentialPardonForm		&PresidentialPardonForm::operator = (const PresidentialP
 /* ************************************************************************** */
 
 /*   MÉTHODE PUBLIC   ******************************************************* */
-
-std::string	PresidentialPardonForm::get_target() const
-{
-	return (this->_target);
-}
-
-void	PresidentialPardonForm::action(void) const
-{
-	std::cout << this->_target << " a été pardonnée par Zaphod Beeblebrox." << std::endl;
-}
-
 
 /*   MÉTHODE PRIVATE   ****************************************************** */
 

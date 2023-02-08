@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 17:45:22 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:59:09 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@
 # include "./class/ShrubberyCreationForm.hpp"
 # include "./class/RobotomyRequestForm.hpp"
 # include "./class/PresidentialPardonForm.hpp"
-
+# include "./class/Intern.hpp"
 
 #endif

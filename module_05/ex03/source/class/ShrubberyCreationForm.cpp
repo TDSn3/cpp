@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:49:33 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 17:53:53 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 22:41:43 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*   CONSTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("ShrubberyCreationForm", 25, 5), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("shrubbery creation", 25, 5), _target(target)
 {
 	std::cout << "\033[00;02;03m" << "ShrubberyCreationForm : Default constructor called" << "\033[00m" << std::endl;
 }

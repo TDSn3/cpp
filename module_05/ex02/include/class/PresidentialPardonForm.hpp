@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:48:16 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 16:19:27 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:51:47 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 
 	PresidentialPardonForm	&operator = (const PresidentialPardonForm &right);
 	std::string	get_target() const;
-	void		action(void);
+	void		action(void) const;
 
 protected:
 
