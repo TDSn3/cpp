@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:57:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 14:44:55 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:11:32 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <string>
 # include <exception>
+# include "Form.hpp"
 
 class Bureaucrat
 {
@@ -46,6 +47,8 @@ public:
 	Bureaucrat			operator -- (int useless);
 	const std::string	get_name(void) const;
 	int					get_grade(void) const;
+	void				signForm(Form &arg);
+	void				executeForm(Form const & form);
 
 protected:
 

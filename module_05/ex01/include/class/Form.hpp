@@ -38,7 +38,7 @@ public:
 
 	Form(std::string name, int sign_grade, int exec_grade);
 	Form(const Form &src);
-	virtual	~Form(void);
+	~Form(void);
 
 	Form	&operator = (const Form &right);
 	const std::string	get_name(void) const;

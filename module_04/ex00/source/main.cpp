@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/03 15:01:49 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:16:41 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int main(void)
 		Animal	*rex5 = new Dog(rex);
 
 		rex5->makeSound();
+		delete rex5;
 	}
 	wait_return();
 
