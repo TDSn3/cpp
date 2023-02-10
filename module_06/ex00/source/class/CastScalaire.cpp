@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CastScalaire.cpp                                        :+:      :+:    :+:   */
+/*   CastScalaire.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 16:00:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/09 16:06:33 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/10 22:21:15 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,87 +17,60 @@
 /*   CONSTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-CastScalaire::CastScalaire(int arg)
+CastScalaire::CastScalaire(char *arg)
 {
-	std::cout << "\033[00;02;03m" << "CastScalaire : Int constructor called" << "\033[00m" << std::endl;
-	_stock_data = reinterpret_cast < __int64_t &> (arg);
-	_index[0] = 1;
-	_index[1] = 0;
-	_index[2] = 0;
-	_index[3] = 0;
+	std::cout << "\033[00;02;03m" << "CastScalaire : Char* constructor called" << "\033[00m" << std::endl;
+
+	char	*endptr;
+	long	stock_l;
+	float	stock_f;
+	double	stock_d;
+
+	stock_l = std::strtol(arg, &endptr, 10);
+	if (*endptr != '\0')
+		std::cout << "Int max" << '\n';
+	if (endptr == arg + std::string(arg).size())
+	{
+		std::cout << "This is an int" << '\n';
+	}
+
+	stock_f = std::strtof(arg, &endptr);
+	if (endptr == arg + std::string(arg).size())
+	{
+		std::cout << "This is a float without f" << '\n';
+	}
+	else if (endptr != arg
+		&& std::string(endptr).size () == 1
+		&& std::string(endptr) == "f"
+		&& endptr == arg + std::string(arg).size() - 1)
+	{
+		int	count = 0;
+
+		for (int i = 0; arg[i]; i++)
+			if (arg[i] == '.')
+				count++;
+		if (count == 1)
+			std::cout << "This is a float with f" << '\n';
+	}
+
+	stock_d = std::strtod(arg, &endptr);
+	if (endptr == arg + std::string(arg).size())
+	{
+		std::cout << "This is a double" << '\n';
+	}
+
+	(void)stock_l;
+	(void)stock_f;
+	(void)stock_d;
 }
 
-CastScalaire::CastScalaire(float arg)
-{
-	std::cout << "\033[00;02;03m" << "CastScalaire : Float constructor called" << "\033[00m" << std::endl;
-	_stock_data = reinterpret_cast < __int64_t &> (arg);
-	_index[0] = 0;
-	_index[1] = 1;
-	_index[2] = 0;
-	_index[3] = 0;
-}
-
-CastScalaire::CastScalaire(double arg)
-{
-	std::cout << "\033[00;02;03m" << "CastScalaire : Double constructor called" << "\033[00m" << std::endl;
-	_stock_data = reinterpret_cast < __int64_t &> (arg);
-	_index[0] = 0;
-	_index[1] = 0;
-	_index[2] = 1;
-	_index[3] = 0;
-}
-
-CastScalaire::CastScalaire(char arg)
-{
-	std::cout << "\033[00;02;03m" << "CastScalaire : Char constructor called" << "\033[00m" << std::endl;
-	_stock_data = reinterpret_cast < __int64_t &> (arg);
-	_index[0] = 0;
-	_index[1] = 0;
-	_index[2] = 0;
-	_index[3] = 1;
-}
-
-CastScalaire::CastScalaire(std::string arg)
-{
-	std::cout << "\033[00;02;03m" << "CastScalaire : String constructor called" << "\033[00m" << std::endl;
-	if (arg == "-inff")
-	{
-
-	}
-	else if (arg == "+inff")
-	{
-
-	}
-	else if (arg == "nanf")
-	{
-
-	}
-	else if (arg == "-inf")
-	{
-
-	}
-	else if (arg == "+inf")
-	{
-
-	}
-	else if (arg == "nan")
-	{
-
-	}
-	else
-		throw (InvalidString());
-}
 
 /*   COPY CONSTRUCTEUR   **************************************************** */
  
 CastScalaire::CastScalaire(const CastScalaire &src)
 {
 	std::cout << "\033[32;02;03m" << "CastScalaire : Copy constructor called" << "\033[00m" << std::endl;
-	_stock_data = src._stock_data;
-	_index[0] = src._index[0];
-	_index[1] = src._index[1];
-	_index[2] = src._index[2];
-	_index[3] = src._index[3];
+	(void) src;
 }
 
 /* ************************************************************************** */
@@ -121,64 +94,8 @@ CastScalaire::~CastScalaire(void)
 CastScalaire	&CastScalaire::operator = (const CastScalaire &right)
 {
 	std::cout << "\033[33;02;03m" << "CastScalaire : Copy assignment operator called" << "\033[00m" << std::endl;
-	_stock_data = right._stock_data;
-	_index[0] = right._index[0];
-	_index[1] = right._index[1];
-	_index[2] = right._index[2];
-	_index[3] = right._index[3];
+	(void) right;
 	return (*this);
-}
-
-CastScalaire::operator int(void)
-{
-	if (_index[0] == 1)
-		return (static_cast<int>(reinterpret_cast<int&>(_stock_data)));
-	else if (_index[1] == 1)
-		return (static_cast<int>(reinterpret_cast<float&>(_stock_data)));
-	else if (_index[2] == 1)
-		return (static_cast<int>(reinterpret_cast<double&>(_stock_data)));
-	else if (_index[3] == 1)
-		return (static_cast<int>(reinterpret_cast<char&>(_stock_data)));
-	return (0);
-}
-
-CastScalaire::operator float(void)
-{
-	if (_index[0] == 1)
-		return (static_cast<float>(reinterpret_cast<int&>(_stock_data)));
-	else if (_index[1] == 1)
-		return (static_cast<float>(reinterpret_cast<float&>(_stock_data)));
-	else if (_index[2] == 1)
-		return (static_cast<float>(reinterpret_cast<double&>(_stock_data)));
-	else if (_index[3] == 1)
-		return (static_cast<float>(reinterpret_cast<char&>(_stock_data)));
-	return (0);
-}
-
-CastScalaire::operator double(void)
-{
-	if (_index[0] == 1)
-		return (static_cast<double>(reinterpret_cast<int&>(_stock_data)));
-	else if (_index[1] == 1)
-		return (static_cast<double>(reinterpret_cast<float&>(_stock_data)));
-	else if (_index[2] == 1)
-		return (static_cast<double>(reinterpret_cast<double&>(_stock_data)));
-	else if (_index[3] == 1)
-		return (static_cast<double>(reinterpret_cast<char&>(_stock_data)));
-	return (0);
-}
-
-CastScalaire::operator char(void)
-{
-	if (_index[0] == 1)
-		return (static_cast<char>(reinterpret_cast<int&>(_stock_data)));
-	else if (_index[1] == 1)
-		return (static_cast<char>(reinterpret_cast<float&>(_stock_data)));
-	else if (_index[2] == 1)
-		return (static_cast<char>(reinterpret_cast<double&>(_stock_data)));
-	else if (_index[3] == 1)
-		return (static_cast<char>(reinterpret_cast<char&>(_stock_data)));
-	return (0);
 }
 
 /*   OPÉRATEUR EXTERNE   **************************************************** */
@@ -190,11 +107,6 @@ CastScalaire::operator char(void)
 /* ************************************************************************** */
 
 /*   MÉTHODE PUBLIC   ******************************************************* */
-
-void	CastScalaire::InvalidString::print_error(void) const
-{
-	std::cout << "CastScalaire : Invalid string in constructor string" << std::endl;
-}
 
 /*   MÉTHODE PRIVATE   ****************************************************** */
 
