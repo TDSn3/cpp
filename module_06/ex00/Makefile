@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/09 12:26:42 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/09 16:17:42 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ I_HEADERS	= -I $(INC_DIR)
 HEADERS		= $(shell find include/ -type f)
 
 NAME_FILE	= $(addprefix class/,												\
+								CastScalaire									\
 			   )																\
 			   main																\
 
