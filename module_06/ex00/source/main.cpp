@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/10 09:15:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:21:25 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 int main(void)
 {
-	CastScalaire	a(42.0f);
+	CastScalaire	a(78);
 	int				b = a;
 	float			c = a;
 	double			d = a;

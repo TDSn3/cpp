@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <header.hpp>
+#include <header.hpp>
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -20,7 +20,7 @@
 CastScalaire::CastScalaire(int arg)
 {
 	std::cout << "\033[00;02;03m" << "CastScalaire : Int constructor called" << "\033[00m" << std::endl;
-	_stock_data = reinterpret_cast < int64_t &> (arg);
+	_stock_data = reinterpret_cast < __int64_t &> (arg);
 	_index[0] = 1;
 	_index[1] = 0;
 	_index[2] = 0;
@@ -30,7 +30,7 @@ CastScalaire::CastScalaire(int arg)
 CastScalaire::CastScalaire(float arg)
 {
 	std::cout << "\033[00;02;03m" << "CastScalaire : Float constructor called" << "\033[00m" << std::endl;
-	_stock_data = reinterpret_cast < int64_t &> (arg);
+	_stock_data = reinterpret_cast < __int64_t &> (arg);
 	_index[0] = 0;
 	_index[1] = 1;
 	_index[2] = 0;
@@ -40,7 +40,7 @@ CastScalaire::CastScalaire(float arg)
 CastScalaire::CastScalaire(double arg)
 {
 	std::cout << "\033[00;02;03m" << "CastScalaire : Double constructor called" << "\033[00m" << std::endl;
-	_stock_data = reinterpret_cast < int64_t &> (arg);
+	_stock_data = reinterpret_cast < __int64_t &> (arg);
 	_index[0] = 0;
 	_index[1] = 0;
 	_index[2] = 1;
@@ -50,11 +50,42 @@ CastScalaire::CastScalaire(double arg)
 CastScalaire::CastScalaire(char arg)
 {
 	std::cout << "\033[00;02;03m" << "CastScalaire : Char constructor called" << "\033[00m" << std::endl;
-	_stock_data = reinterpret_cast < int64_t &> (arg);
+	_stock_data = reinterpret_cast < __int64_t &> (arg);
 	_index[0] = 0;
 	_index[1] = 0;
 	_index[2] = 0;
 	_index[3] = 1;
+}
+
+CastScalaire::CastScalaire(std::string arg)
+{
+	std::cout << "\033[00;02;03m" << "CastScalaire : String constructor called" << "\033[00m" << std::endl;
+	if (arg == "-inff")
+	{
+
+	}
+	else if (arg == "+inff")
+	{
+
+	}
+	else if (arg == "nanf")
+	{
+
+	}
+	else if (arg == "-inf")
+	{
+
+	}
+	else if (arg == "+inf")
+	{
+
+	}
+	else if (arg == "nan")
+	{
+
+	}
+	else
+		throw (InvalidString());
 }
 
 /*   COPY CONSTRUCTEUR   **************************************************** */
@@ -159,6 +190,11 @@ CastScalaire::operator char(void)
 /* ************************************************************************** */
 
 /*   MÉTHODE PUBLIC   ******************************************************* */
+
+void	CastScalaire::InvalidString::print_error(void) const
+{
+	std::cout << "CastScalaire : Invalid string in constructor string" << std::endl;
+}
 
 /*   MÉTHODE PRIVATE   ****************************************************** */
 
