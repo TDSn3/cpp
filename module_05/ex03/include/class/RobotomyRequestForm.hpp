@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:38:18 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 17:39:41 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:51:53 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ public:
 
 	RobotomyRequestForm	&operator = (const RobotomyRequestForm &right);
 	std::string	get_target() const;
-	void	action(void);
+	void	action(void) const;
 
 protected:
 

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/07 12:03:19 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:13:01 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(void)
 		Bureaucrat	a("Alfred", 150);
 
 		std::cout << a << std::endl;
-		a++;
+		++a;
 		std::cout << a << std::endl;
 		a--;
 		std::cout << a << std::endl;

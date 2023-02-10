@@ -54,7 +54,7 @@ public:
 	int					get_exec_grade(void) const;
 	int					beSigned(class Bureaucrat &arg);
 	void				execute(Bureaucrat const & executor) const;
-	virtual void		action(void) = 0;
+	virtual void		action(void) const = 0;
 
 protected:
 

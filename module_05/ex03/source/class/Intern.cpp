@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:32:39 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 22:57:39 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/10 11:45:00 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ Form	*Intern::makeForm(std::string form_name, std::string form_target)
 	}
 
 	if (stock != -1)
+	{
+		std::cout << "Intern creates " << form_name << "." << std::endl;
 		return (this->_tab[stock]);
+	}
 	else
 	{
 		std::cout << "Form do not exist!" << std::endl;

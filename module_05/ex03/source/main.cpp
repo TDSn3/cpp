@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 22:59:20 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/10 11:56:45 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 
 int main(void)
 {
- 	Intern  someRandomIntern;
-    Form*   rrf;
+ 	Bureaucrat	tom("Tom", 1);
+	Intern		someRandomIntern;
+	Form*		rrf;
 
 	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	tom.signForm(*rrf);
+	tom.executeForm(*rrf);
 	delete rrf;
 	return (0);
 }

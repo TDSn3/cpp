@@ -6,12 +6,12 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:48:16 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 18:10:48 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:51:47 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+# define PresidentialPardonForm_HPP
 
 # include <iostream>
 # include <string>
@@ -28,7 +28,7 @@ public:
 
 	PresidentialPardonForm	&operator = (const PresidentialPardonForm &right);
 	std::string	get_target() const;
-	void		action(void);
+	void		action(void) const;
 
 protected:
 

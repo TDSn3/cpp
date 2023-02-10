@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 21:52:04 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/10 11:24:01 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ Form::Form(std::string name, int sign_grade, int exec_grade) : _name(name) , _si
 
 /*   COPY CONSTRUCTEUR   **************************************************** */
 
-Form::Form(const Form &src) : _name(src.get_name()) , _sign_grade(src.get_sign_grade()) , _exec_grade(src.get_exec_grade())
+Form::Form(const Form &src) : _name(src._name) , _sign_grade(src._sign_grade) , _exec_grade(src._exec_grade)
 {
 	std::cout << "\033[32;02;03m" << "Form : Copy constructor called" << "\033[00m" << std::endl;
+	_sign = 0;
 	(void) src;
 }
 
@@ -56,7 +57,7 @@ Form::~Form(void)
 Form		&Form::operator = (const Form &right)
 {
 	std::cout << "\033[33;02;03m" << "Form : Copy assignment operator called" << "\033[00m" << std::endl;
-	(void) right;
+	_sign = right._sign;
 	return (*this);
 }
 

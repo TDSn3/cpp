@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:40:24 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 22:40:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/10 11:41:20 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*   CONSTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("robotomy request", 25, 5), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("robotomy request", 72, 45), _target(target)
 {
 	std::cout << "\033[00;02;03m" << "RobotomyRequestForm : Default constructor called" << "\033[00m" << std::endl;
 }
@@ -70,7 +70,7 @@ std::string	RobotomyRequestForm::get_target() const
 	return (this->_target);
 }
 
-void	RobotomyRequestForm::action(void)
+void	RobotomyRequestForm::action(void) const
 {
 	int	i_random;
 	

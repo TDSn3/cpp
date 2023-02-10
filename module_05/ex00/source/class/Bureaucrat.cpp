@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 08:58:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/07 11:57:12 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:11:07 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 
 /*   COPY CONSTRUCTEUR   **************************************************** */
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src)
+Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src._name), _grade(src._grade)
 {
 	std::cout << "\033[32;02;03m" << "Bureaucrat : Copy constructor called" << "\033[00m" << std::endl;
-	(void) src;
 }
 
 /* ************************************************************************** */
@@ -56,7 +55,7 @@ Bureaucrat::~Bureaucrat(void)
 Bureaucrat		&Bureaucrat::operator = (const Bureaucrat &right)
 {
 	std::cout << "\033[33;02;03m" << "Bureaucrat : Copy assignment operator called" << "\033[00m" << std::endl;
-	(void) right;
+	_grade = right._grade;
 	return (*this);
 }
 

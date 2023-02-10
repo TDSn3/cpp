@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:50:19 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/08 22:41:28 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/10 11:42:13 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ std::string	PresidentialPardonForm::get_target() const
 	return (this->_target);
 }
 
-void	PresidentialPardonForm::action(void)
+void	PresidentialPardonForm::action(void) const
 {
 	std::cout << this->_target << " a été pardonnée par Zaphod Beeblebrox." << std::endl;
 }
