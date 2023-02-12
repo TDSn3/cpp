@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/10 22:02:54 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/12 11:38:37 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,36 +29,65 @@
 //static void	wait_return(void);
 static int	check_error(int argc, char **argv);
 
-// char || int || float || double
-
 int main(int argc, char **argv)
 {
 	if (check_error(argc, argv))
 		return (1);
+	try
+	{
+		CastScalaire	x(argv[1]);
+		int				a = x;
+		float			b = x;
+		double			c = x;
+		char			d = x;
 
-	CastScalaire	a(argv[1]);
-//	CastScalaire	a("nan");
-//	int				b = a;
-//	float			c = a;
-//	double			d = a;
-//	char			e = a;
-//	std::string		f = a;
-//
-//	std::cout << b << "\n" << c << "\n" << d  << "\n" << f << "\n" << e << std::endl;
+		std::cout << "\n";
+
+		std::cout << "int    : ";
+		if (x.get_print_0() == -1)
+			std::cout << "Impossible\n";
+		else
+			std::cout << a << "\n";
+
+		std::cout << "float  : ";
+		if (x.get_print_1() == -1)
+			std::cout << "Impossible\n";
+		else
+			std::cout << b << "\n";
+
+		std::cout << "double : ";
+		if (x.get_print_2() == -1)
+			std::cout << "Impossible\n";
+		else
+			std::cout << c << "\n";
+
+		std::cout << "char   : ";
+		if (x.get_print_3() == -1)
+			std::cout << "Non displayable\n";
+		else
+			std::cout << "\'" << d << "\'" << "\n";
+	}
+	catch(const CastScalaire::InvalidString &e)
+	{
+		e.print_error();
+	}
+	
 	return (0);
 }
+
+
 
 static int	check_error(int argc, char **argv)
 {	
 	(void) argv;
 	if (argc != 2)
 	{
-		std::cout << "\033[31;01m" << "Error : One argument required." << "\033[00m" <<  std::endl;
+		std::cerr << "\033[31;01m" << "Error : One argument required" << "\033[00m" <<  std::endl;
 		return (1);
 	}
 	if (!argv[1])
 	{
-		std::cout << "\033[31;01m" << "Error : wrong argument." << "\033[00m" <<  std::endl;
+		std::cerr << "\033[31;01m" << "Error : NULL argument" << "\033[00m" <<  std::endl;
 		return (1);
 	}
 	return (0);

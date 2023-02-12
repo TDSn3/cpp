@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 16:00:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/11 10:48:07 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/12 12:20:17 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ CastScalaire::CastScalaire(char *arg)
 	_index[2] = 0;
 	_index[3] = 0;
 
+	_print[0] = 0;
+	_print[1] = 0;
+	_print[2] = 0;
+	_print[3] = 0;
+
 	switch (if_int(arg))
 	{
 	case 1:
@@ -44,7 +49,15 @@ CastScalaire::CastScalaire(char *arg)
 				std::cout << "Double detected" << std::endl;
 				break ;	
 			default:
-				break ;
+				switch (if_char(arg))
+				{
+				case 1:
+					std::cout << "Char detected" << std::endl;
+					break;
+				default:
+					throw (InvalidString());
+					break;
+				}
 			}
 		}
 	}
@@ -110,14 +123,15 @@ int	CastScalaire::check_one_point_float(char *arg) const
 
 int	CastScalaire::if_int(char *arg)
 {
-	char	*endptr;
-	long	stock_l;
+	char		*endptr;
+	long long	stock_l;
 
-	stock_l = std::strtol(arg, &endptr, 10);  				// long (int)
+	stock_l = std::strtoll(arg, &endptr, 10);  				// long long (int)
 	if (endptr == arg + std::string(arg).size())
 	{
 		_index[0] = 1;										// -> This is an int
 		_stock_data = reinterpret_cast < __int64_t &> (stock_l);
+		print_bits();
 		return (1);
 	}
 	return (0);
@@ -138,9 +152,12 @@ int	CastScalaire::if_float(char *arg)
 		{
 			_index[1] = 1;									// -> This is a float with f
 			_stock_data = reinterpret_cast<__int64_t&>(stock_f);
+			print_bits();
 			return (1);
 		}
 	}
+	if (if_string(arg))											// float
+		return (1);
 	return (0);
 }
 
@@ -160,6 +177,38 @@ int	CastScalaire::if_double(char *arg)
 	return (0);
 }
 
+int	CastScalaire::if_string(char *arg)
+{
+	if (   std::string(arg) == "-inff"						// double
+		|| std::string(arg) == "+inff"						//
+		|| std::string(arg) == "nanf")						//
+	{
+		_index[1] = 1;										// -> This is a float with f
+		_index[3] = 1;										// -> To print the right value
+		_stock_arg = arg;
+		_stock_data = 0;
+		return (1);
+	}
+	return (0);
+}
+
+int	CastScalaire::if_char(char *arg)
+{	
+	if (arg && std::string(arg).size() == 1)
+	{
+		if (std::isprint(arg[0]))
+		{
+			_stock_data = reinterpret_cast<__int64_t&>(arg[0]);
+			_stock_data = _stock_data << 56;
+			_stock_data = _stock_data >> 56;
+			_index[3] = 1;
+			print_bits();
+			return (1);
+		}
+	}
+	return (0);
+}
+
 void	CastScalaire::print_bits(void) const
 {
 	for (int i = 63; i >= 0; i--)
@@ -169,6 +218,107 @@ void	CastScalaire::print_bits(void) const
 			std::cout << " ";
 	}
 	std::cout << std::endl;
+}
+
+CastScalaire::operator int(void)
+{
+//	if (_stock_data > INT_MAX || _stock_data < INT_MIN)		//
+//		_print[0] = -1;										//
+
+	if (_index[0] == 1 && (_stock_data > INT_MAX || _stock_data < INT_MIN))
+		_print[0] = -1;
+	else if (_index[1] == 1 && (static_cast<long long int>(reinterpret_cast<float&>(_stock_data)) > INT_MAX || static_cast<long long int>(reinterpret_cast<float&>(_stock_data)) < INT_MIN))
+		_print[0] = -1;
+	else if (_index[2] == 1 && (static_cast<long long int>(reinterpret_cast<double&>(_stock_data)) > INT_MAX || static_cast<long long int>(reinterpret_cast<double&>(_stock_data)) < INT_MIN))
+		_print[0] = -1;
+	else if (_index[3] == 1 && (static_cast<long long int>(reinterpret_cast<char&>(_stock_data)) > INT_MAX || static_cast<long long int>(reinterpret_cast<char&>(_stock_data)) < INT_MIN))
+		_print[0] = -1;
+
+	if (_index[0] == 1)
+		return (static_cast<int>(reinterpret_cast<int&>(_stock_data)));
+	else if (_index[1] == 1)
+		return (static_cast<int>(reinterpret_cast<float&>(_stock_data)));
+	else if (_index[2] == 1)
+		return (static_cast<int>(reinterpret_cast<double&>(_stock_data)));
+	else if (_index[3] == 1)
+		return (static_cast<int>(reinterpret_cast<char&>(_stock_data)));
+	return (0);
+}
+
+CastScalaire::operator float(void)
+{
+	if (_index[0] == 1)
+		return (static_cast<float>(reinterpret_cast<int&>(_stock_data)));
+	else if (_index[1] == 1)
+		return (static_cast<float>(reinterpret_cast<float&>(_stock_data)));
+	else if (_index[2] == 1)
+		return (static_cast<float>(reinterpret_cast<double&>(_stock_data)));
+	else if (_index[3] == 1)
+		return (static_cast<float>(reinterpret_cast<char&>(_stock_data)));
+	return (0);
+}
+
+CastScalaire::operator double(void)
+{
+	if (_index[0] == 1)
+		return (static_cast<double>(reinterpret_cast<int&>(_stock_data)));
+	else if (_index[1] == 1)
+		return (static_cast<double>(reinterpret_cast<float&>(_stock_data)));
+	else if (_index[2] == 1)
+		return (static_cast<double>(reinterpret_cast<double&>(_stock_data)));
+	else if (_index[3] == 1)
+		return (static_cast<double>(reinterpret_cast<char&>(_stock_data)));
+	return (0);
+}
+
+CastScalaire::operator char(void)
+{
+//	if (!std::isprint(static_cast<char>(_stock_data)))	//
+//		_print[3] = -1;									//
+
+	if (_index[0] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<int&>(_stock_data)))))
+		_print[3] = -1;
+	else if (_index[1] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<float&>(_stock_data)))))
+		_print[3] = -1;
+	else if (_index[2] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<double&>(_stock_data)))))
+		_print[3] = -1;
+	else if (_index[3] == 1 && (!std::isprint(static_cast<char>(_stock_data))))
+		_print[3] = -1;
+
+	if (_index[0] == 1)
+		return (static_cast<char>(reinterpret_cast<int&>(_stock_data)));
+	else if (_index[1] == 1)
+		return (static_cast<char>(reinterpret_cast<float&>(_stock_data)));
+	else if (_index[2] == 1)
+		return (static_cast<char>(reinterpret_cast<double&>(_stock_data)));
+	else if (_index[3] == 1)
+		return (static_cast<char>(reinterpret_cast<char&>(_stock_data)));
+	return (0);
+}
+
+void	CastScalaire::InvalidString::print_error(void) const
+{
+	std::cerr << "CastScalaire : Invalid string" << std::endl;
+}
+
+int				CastScalaire::get_print_0(void) const
+{
+	return (_print[0]);
+}
+
+int				CastScalaire::get_print_1(void) const
+{
+	return (_print[1]);
+}
+
+int				CastScalaire::get_print_2(void) const
+{
+	return (_print[2]);
+}
+
+int				CastScalaire::get_print_3(void) const
+{
+	return (_print[3]);
 }
 
 /* ************************************************************************** */
