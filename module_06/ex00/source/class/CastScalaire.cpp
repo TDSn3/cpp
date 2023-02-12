@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 16:00:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/12 12:57:23 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/12 15:24:21 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,82 @@ CastScalaire	&CastScalaire::operator = (const CastScalaire &right)
 	return (*this);
 }
 
+CastScalaire::operator int(void)
+{
+//	if (_stock_data > INT_MAX || _stock_data < INT_MIN)		//
+//		_print[0] = -1;										//
+
+	if (_index[0] == 1 && (_stock_data > INT_MAX || _stock_data < INT_MIN))
+		_print[0] = -1;
+	else if (_index[1] == 1 && (static_cast<long long int>(reinterpret_cast<float&>(_stock_data)) > INT_MAX || static_cast<long long int>(reinterpret_cast<float&>(_stock_data)) < INT_MIN))
+		_print[0] = -1;
+	else if (_index[2] == 1 && (static_cast<long long int>(reinterpret_cast<double&>(_stock_data)) > INT_MAX || static_cast<long long int>(reinterpret_cast<double&>(_stock_data)) < INT_MIN))
+		_print[0] = -1;
+	else if (_index[3] == 1 && (static_cast<long long int>(reinterpret_cast<char&>(_stock_data)) > INT_MAX || static_cast<long long int>(reinterpret_cast<char&>(_stock_data)) < INT_MIN))
+		_print[0] = -1;
+
+	if (_index[0] == 1)
+		return (static_cast<int>(reinterpret_cast<int&>(_stock_data)));
+	else if (_index[1] == 1)
+		return (static_cast<int>(reinterpret_cast<float&>(_stock_data)));
+	else if (_index[2] == 1)
+		return (static_cast<int>(reinterpret_cast<double&>(_stock_data)));
+	else if (_index[3] == 1)
+		return (static_cast<int>(reinterpret_cast<char&>(_stock_data)));
+	return (0);
+}
+
+CastScalaire::operator float(void)
+{
+	if (_index[0] == 1)
+		return (static_cast<float>(reinterpret_cast<int&>(_stock_data)));
+	else if (_index[1] == 1)
+		return (static_cast<float>(reinterpret_cast<float&>(_stock_data)));
+	else if (_index[2] == 1)
+		return (static_cast<float>(reinterpret_cast<double&>(_stock_data)));
+	else if (_index[3] == 1)
+		return (static_cast<float>(reinterpret_cast<char&>(_stock_data)));
+	return (0);
+}
+
+CastScalaire::operator double(void)
+{
+	if (_index[0] == 1)
+		return (static_cast<double>(reinterpret_cast<int&>(_stock_data)));
+	else if (_index[1] == 1)
+		return (static_cast<double>(reinterpret_cast<float&>(_stock_data)));
+	else if (_index[2] == 1)
+		return (static_cast<double>(reinterpret_cast<double&>(_stock_data)));
+	else if (_index[3] == 1)
+		return (static_cast<double>(reinterpret_cast<char&>(_stock_data)));
+	return (0);
+}
+
+CastScalaire::operator char(void)
+{
+//	if (!std::isprint(static_cast<char>(_stock_data)))	//
+//		_print[3] = -1;									//
+
+	if (_index[0] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<int&>(_stock_data)))))
+		_print[3] = -1;
+	else if (_index[1] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<float&>(_stock_data)))))
+		_print[3] = -1;
+	else if (_index[2] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<double&>(_stock_data)))))
+		_print[3] = -1;
+	else if (_index[3] == 1 && (!std::isprint(static_cast<char>(_stock_data))))
+		_print[3] = -1;
+
+	if (_index[0] == 1)
+		return (static_cast<char>(reinterpret_cast<int&>(_stock_data)));
+	else if (_index[1] == 1)
+		return (static_cast<char>(reinterpret_cast<float&>(_stock_data)));
+	else if (_index[2] == 1)
+		return (static_cast<char>(reinterpret_cast<double&>(_stock_data)));
+	else if (_index[3] == 1)
+		return (static_cast<char>(reinterpret_cast<char&>(_stock_data)));
+	return (0);
+}
+
 /*   OPÉRATEUR EXTERNE   **************************************************** */
 
 /* ************************************************************************** */
@@ -118,6 +194,65 @@ CastScalaire	&CastScalaire::operator = (const CastScalaire &right)
 /* ************************************************************************** */
 
 /*   MÉTHODE PUBLIC   ******************************************************* */
+
+void	CastScalaire::InvalidString::print_error(void) const
+{
+	std::cerr << "CastScalaire : Invalid string" << std::endl;
+}
+
+int				CastScalaire::get_print_0(void) const
+{
+	return (_print[0]);
+}
+
+int				CastScalaire::get_print_1(void) const
+{
+	return (_print[1]);
+}
+
+int				CastScalaire::get_print_2(void) const
+{
+	return (_print[2]);
+}
+
+int				CastScalaire::get_print_3(void) const
+{
+	return (_print[3]);
+}
+
+/* static */void	CastScalaire::print_arg(CastScalaire x)
+{
+	int		a = x;
+	float	b = x;
+	double	c = x;
+	char	d = x;
+
+	std::cout << "\n";
+
+	std::cout << "int    : ";
+	if (x.get_print_0() == -1)
+		std::cout << "Impossible\n";
+	else
+		std::cout << a << "\n";
+
+	std::cout << "float  : ";
+	if (x.get_print_1() == -1)
+		std::cout << "Impossible\n";
+	else
+		std::cout << b << "\n";
+
+	std::cout << "double : ";
+	if (x.get_print_2() == -1)
+		std::cout << "Impossible\n";
+	else
+		std::cout << c << "\n";
+
+	std::cout << "char   : ";
+	if (x.get_print_3() == -1)
+		std::cout << "Non displayable\n";
+	else
+		std::cout << "\'" << d << "\'" << "\n";
+}
 
 /*   MÉTHODE PRIVATE   ****************************************************** */
 
@@ -230,141 +365,6 @@ void	CastScalaire::print_bits(void) const
 			std::cout << " ";
 	}
 	std::cout << std::endl;
-}
-
-CastScalaire::operator int(void)
-{
-//	if (_stock_data > INT_MAX || _stock_data < INT_MIN)		//
-//		_print[0] = -1;										//
-
-	if (_index[0] == 1 && (_stock_data > INT_MAX || _stock_data < INT_MIN))
-		_print[0] = -1;
-	else if (_index[1] == 1 && (static_cast<long long int>(reinterpret_cast<float&>(_stock_data)) > INT_MAX || static_cast<long long int>(reinterpret_cast<float&>(_stock_data)) < INT_MIN))
-		_print[0] = -1;
-	else if (_index[2] == 1 && (static_cast<long long int>(reinterpret_cast<double&>(_stock_data)) > INT_MAX || static_cast<long long int>(reinterpret_cast<double&>(_stock_data)) < INT_MIN))
-		_print[0] = -1;
-	else if (_index[3] == 1 && (static_cast<long long int>(reinterpret_cast<char&>(_stock_data)) > INT_MAX || static_cast<long long int>(reinterpret_cast<char&>(_stock_data)) < INT_MIN))
-		_print[0] = -1;
-
-	if (_index[0] == 1)
-		return (static_cast<int>(reinterpret_cast<int&>(_stock_data)));
-	else if (_index[1] == 1)
-		return (static_cast<int>(reinterpret_cast<float&>(_stock_data)));
-	else if (_index[2] == 1)
-		return (static_cast<int>(reinterpret_cast<double&>(_stock_data)));
-	else if (_index[3] == 1)
-		return (static_cast<int>(reinterpret_cast<char&>(_stock_data)));
-	return (0);
-}
-
-CastScalaire::operator float(void)
-{
-	if (_index[0] == 1)
-		return (static_cast<float>(reinterpret_cast<int&>(_stock_data)));
-	else if (_index[1] == 1)
-		return (static_cast<float>(reinterpret_cast<float&>(_stock_data)));
-	else if (_index[2] == 1)
-		return (static_cast<float>(reinterpret_cast<double&>(_stock_data)));
-	else if (_index[3] == 1)
-		return (static_cast<float>(reinterpret_cast<char&>(_stock_data)));
-	return (0);
-}
-
-CastScalaire::operator double(void)
-{
-	if (_index[0] == 1)
-		return (static_cast<double>(reinterpret_cast<int&>(_stock_data)));
-	else if (_index[1] == 1)
-		return (static_cast<double>(reinterpret_cast<float&>(_stock_data)));
-	else if (_index[2] == 1)
-		return (static_cast<double>(reinterpret_cast<double&>(_stock_data)));
-	else if (_index[3] == 1)
-		return (static_cast<double>(reinterpret_cast<char&>(_stock_data)));
-	return (0);
-}
-
-CastScalaire::operator char(void)
-{
-//	if (!std::isprint(static_cast<char>(_stock_data)))	//
-//		_print[3] = -1;									//
-
-	if (_index[0] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<int&>(_stock_data)))))
-		_print[3] = -1;
-	else if (_index[1] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<float&>(_stock_data)))))
-		_print[3] = -1;
-	else if (_index[2] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<double&>(_stock_data)))))
-		_print[3] = -1;
-	else if (_index[3] == 1 && (!std::isprint(static_cast<char>(_stock_data))))
-		_print[3] = -1;
-
-	if (_index[0] == 1)
-		return (static_cast<char>(reinterpret_cast<int&>(_stock_data)));
-	else if (_index[1] == 1)
-		return (static_cast<char>(reinterpret_cast<float&>(_stock_data)));
-	else if (_index[2] == 1)
-		return (static_cast<char>(reinterpret_cast<double&>(_stock_data)));
-	else if (_index[3] == 1)
-		return (static_cast<char>(reinterpret_cast<char&>(_stock_data)));
-	return (0);
-}
-
-void	CastScalaire::InvalidString::print_error(void) const
-{
-	std::cerr << "CastScalaire : Invalid string" << std::endl;
-}
-
-int				CastScalaire::get_print_0(void) const
-{
-	return (_print[0]);
-}
-
-int				CastScalaire::get_print_1(void) const
-{
-	return (_print[1]);
-}
-
-int				CastScalaire::get_print_2(void) const
-{
-	return (_print[2]);
-}
-
-int				CastScalaire::get_print_3(void) const
-{
-	return (_print[3]);
-}
-
-/* static */void	CastScalaire::print_arg(CastScalaire x)
-{
-	int		a = x;
-	float	b = x;
-	double	c = x;
-	char	d = x;
-
-	std::cout << "\n";
-
-	std::cout << "int    : ";
-	if (x.get_print_0() == -1)
-		std::cout << "Impossible\n";
-	else
-		std::cout << a << "\n";
-
-	std::cout << "float  : ";
-	if (x.get_print_1() == -1)
-		std::cout << "Impossible\n";
-	else
-		std::cout << b << "\n";
-
-	std::cout << "double : ";
-	if (x.get_print_2() == -1)
-		std::cout << "Impossible\n";
-	else
-		std::cout << c << "\n";
-
-	std::cout << "char   : ";
-	if (x.get_print_3() == -1)
-		std::cout << "Non displayable\n";
-	else
-		std::cout << "\'" << d << "\'" << "\n";
 }
 
 /* ************************************************************************** */
