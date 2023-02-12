@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/09 16:17:42 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/12 12:45:57 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,9 @@ NAME_FILE	= $(addprefix class/,												\
 
 SRC			= $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
+DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
+
+-include $(DEPENDS)
 
 # **************************************************************************** #
 #                                                                              #
@@ -58,7 +61,7 @@ OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(HEADERS) Makefile
 	@ mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(I_HEADERS) -c $< -o $@
+	$(CC) $(CFLAGS) $(I_HEADERS) -MMD -MP -c $< -o $@
 
 all: $(NAME)
 

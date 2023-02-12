@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 16:00:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/12 12:20:17 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/12 12:57:23 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ CastScalaire::CastScalaire(char *arg)
 CastScalaire::CastScalaire(const CastScalaire &src)
 {
 	std::cout << "\033[32;02;03m" << "CastScalaire : Copy constructor called" << "\033[00m" << std::endl;
-	(void) src;
+	(*this) = src;
 }
 
 /* ************************************************************************** */
@@ -93,7 +93,19 @@ CastScalaire::~CastScalaire(void)
 CastScalaire	&CastScalaire::operator = (const CastScalaire &right)
 {
 	std::cout << "\033[33;02;03m" << "CastScalaire : Copy assignment operator called" << "\033[00m" << std::endl;
-	(void) right;
+
+	_index[0] = right._index[0];
+	_index[1] = right._index[1];
+	_index[2] = right._index[2];
+	_index[3] = right._index[3];
+
+	_print[0] = right._print[0];
+	_print[1] = right._print[1];
+	_print[2] = right._print[2];
+	_print[3] = right._print[3];
+
+	_stock_data = right._stock_data;
+	_stock_arg = right._stock_arg;
 	return (*this);
 }
 
@@ -319,6 +331,40 @@ int				CastScalaire::get_print_2(void) const
 int				CastScalaire::get_print_3(void) const
 {
 	return (_print[3]);
+}
+
+/* static */void	CastScalaire::print_arg(CastScalaire x)
+{
+	int		a = x;
+	float	b = x;
+	double	c = x;
+	char	d = x;
+
+	std::cout << "\n";
+
+	std::cout << "int    : ";
+	if (x.get_print_0() == -1)
+		std::cout << "Impossible\n";
+	else
+		std::cout << a << "\n";
+
+	std::cout << "float  : ";
+	if (x.get_print_1() == -1)
+		std::cout << "Impossible\n";
+	else
+		std::cout << b << "\n";
+
+	std::cout << "double : ";
+	if (x.get_print_2() == -1)
+		std::cout << "Impossible\n";
+	else
+		std::cout << c << "\n";
+
+	std::cout << "char   : ";
+	if (x.get_print_3() == -1)
+		std::cout << "Non displayable\n";
+	else
+		std::cout << "\'" << d << "\'" << "\n";
 }
 
 /* ************************************************************************** */

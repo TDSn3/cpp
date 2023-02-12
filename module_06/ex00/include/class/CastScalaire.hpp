@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:30:26 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/12 11:38:16 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/12 12:57:28 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ public:
 	int				get_print_1(void) const;
 	int				get_print_2(void) const;
 	int				get_print_3(void) const;
+	static void		print_arg(CastScalaire x);
 
 protected:
 

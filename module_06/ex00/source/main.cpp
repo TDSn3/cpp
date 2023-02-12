@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/12 11:38:37 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/12 12:58:33 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,36 +36,7 @@ int main(int argc, char **argv)
 	try
 	{
 		CastScalaire	x(argv[1]);
-		int				a = x;
-		float			b = x;
-		double			c = x;
-		char			d = x;
-
-		std::cout << "\n";
-
-		std::cout << "int    : ";
-		if (x.get_print_0() == -1)
-			std::cout << "Impossible\n";
-		else
-			std::cout << a << "\n";
-
-		std::cout << "float  : ";
-		if (x.get_print_1() == -1)
-			std::cout << "Impossible\n";
-		else
-			std::cout << b << "\n";
-
-		std::cout << "double : ";
-		if (x.get_print_2() == -1)
-			std::cout << "Impossible\n";
-		else
-			std::cout << c << "\n";
-
-		std::cout << "char   : ";
-		if (x.get_print_3() == -1)
-			std::cout << "Non displayable\n";
-		else
-			std::cout << "\'" << d << "\'" << "\n";
+		CastScalaire::print_arg(x);
 	}
 	catch(const CastScalaire::InvalidString &e)
 	{
@@ -74,8 +45,6 @@ int main(int argc, char **argv)
 	
 	return (0);
 }
-
-
 
 static int	check_error(int argc, char **argv)
 {	
