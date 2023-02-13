@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 16:00:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/12 15:24:21 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:50:53 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,11 +165,23 @@ CastScalaire::operator char(void)
 //	if (!std::isprint(static_cast<char>(_stock_data)))	//
 //		_print[3] = -1;									//
 
-	if (_index[0] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<int&>(_stock_data)))))
+	if (((_index[0] == 1
+		&& (static_cast<int>(reinterpret_cast<int&>(_stock_data)) < 0
+		|| static_cast<int>(reinterpret_cast<int&>(_stock_data)) > 256))
+		|| (_index[0] == 1
+		&& !std::isprint(static_cast<int>(reinterpret_cast<int&>(_stock_data))))))
 		_print[3] = -1;
-	else if (_index[1] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<float&>(_stock_data)))))
+	else if (((_index[1] == 1
+		&& (static_cast<int>(reinterpret_cast<float&>(_stock_data)) < 0
+		|| static_cast<int>(reinterpret_cast<float&>(_stock_data)) > 256))
+		|| (_index[1] == 1
+		&& !std::isprint(static_cast<int>(reinterpret_cast<float&>(_stock_data))))))
 		_print[3] = -1;
-	else if (_index[2] == 1 && (!std::isprint(static_cast<int>(reinterpret_cast<double&>(_stock_data)))))
+	else if (((_index[2] == 1
+		&& (static_cast<int>(reinterpret_cast<double&>(_stock_data)) < 0
+		|| static_cast<int>(reinterpret_cast<double&>(_stock_data)) > 256))
+		|| (_index[2] == 1
+		&& !std::isprint(static_cast<int>(reinterpret_cast<double&>(_stock_data))))))
 		_print[3] = -1;
 	else if (_index[3] == 1 && (!std::isprint(static_cast<char>(_stock_data))))
 		_print[3] = -1;
@@ -303,7 +315,7 @@ int	CastScalaire::if_float(char *arg)
 			return (1);
 		}
 	}
-	if (if_string(arg))											// float
+	if (if_string(arg))										// float
 		return (1);
 	return (0);
 }

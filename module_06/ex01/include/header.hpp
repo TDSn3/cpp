@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/12 14:50:46 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:55:45 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <string>
 # include <exception>
 # include <cctype>
+# include <stdint.h>
+# include <cstdlib>
 
 # include "Data.hpp"
 
