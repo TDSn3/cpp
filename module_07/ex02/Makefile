@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/13 11:38:49 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/13 15:49:29 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,7 @@ I_HEADERS	= -I $(INC_DIR)
 
 HEADERS		= $(shell find include/ -type f)
 
-NAME_FILE	= main																\
-			  Array																\
+NAME_FILE	= main
 
 SRC			= $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
