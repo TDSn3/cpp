@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/13 15:58:18 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/13 20:52:37 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 int main(void)
 {
+{	
 	Array<int>	new_empty_tab;
 	Array<int>	new_tab(3);
 
@@ -32,6 +33,27 @@ int main(void)
 	std::cout << copy_tab[0] << std::endl;
 	std::cout << copy_tab[1] << std::endl;
 	std::cout << copy_tab[2] << std::endl;
+
+	new_tab[2] = 200;
+
+	std::cout << "\n";
+	std::cout << "new_tab[2]   : " << new_tab[2] << std::endl;
+	std::cout << "copy_tab[2]  : " << copy_tab[2] << std::endl;
+
+	copy_tab[2] = 400;
+
+	std::cout << "\n";
+	std::cout << "new_tab[2]   : " << new_tab[2] << std::endl;
+	std::cout << "copy_tab[2]  : " << copy_tab[2] << std::endl;
+
+	std::cout << "\n";
+	std::cout << "new_tab size : " << new_tab.size() << std::endl;
+}
+{
+	int *a = new int();
+	std::cout << *a << std::endl;
+	delete a;
+}
 	return (0);
 }
 
