@@ -6,14 +6,13 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/15 22:33:13 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:44:53 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.hpp>
 
 int main(void)
-{
 {
 	Span			a(1e4);	// 1 * 10^4 = 10 000
 	unsigned int	tab[1000];
@@ -49,18 +48,5 @@ int main(void)
 	{
 		std::cerr << e.what() << '\n';
 	}
-}
-{
-	Span	sp = Span(5);
-
-	sp.addNumber(6);
-	sp.addNumber(3);
-	sp.addNumber(17);
-	sp.addNumber(9);
-	sp.addNumber(11);
-	
-	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
-}
 	return (0);
 }

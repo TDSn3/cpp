@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 16:00:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/15 22:34:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:58:28 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,13 @@ void	Span::addNumber(unsigned int nb)
 
 void	Span::addrangeiterators(Span::MyIterator first, Span::MyIterator last)
 {
+	std::cout << "first : " << *first << std::endl;
+	std::cout << "last  : " << *last << std::endl;
 	while (first != last)
 	{
 		addNumber(*first);
 		first++;
 	}
-	addNumber(*first);
 }
 
 unsigned int	Span::shortestSpan(void)
@@ -101,16 +102,12 @@ unsigned int	Span::shortestSpan(void)
 		throw (std::exception());
 
 	std::vector<unsigned int>	stock_stock(_stock, _stock + _stock_size);
-	unsigned int				min = *(stock_stock.end() - 1);
 
 	std::sort(stock_stock.begin(), stock_stock.end());
-	for (std::vector<unsigned int>::iterator it = stock_stock.begin(); it != stock_stock.end(); it++)
-	{
-		if (it + 1 != stock_stock.end())
-			if (*(it + 1) - *it < min)
-				min = *(it + 1) - *it;
-	}
-	return (min);
+	std::cout << "Min    : " << *stock_stock.begin() << std::endl;
+	std::cout << "Min +1 : " << *(stock_stock.begin() + 1) << std::endl;
+
+	return (*(stock_stock.begin() + 1) - *stock_stock.begin());
 }
 
 unsigned int	Span::longestSpan(void)
@@ -123,6 +120,8 @@ unsigned int	Span::longestSpan(void)
 
 	stock_min = *std::min_element(_stock, _stock + _stock_size);
 	stock_max = *std::max_element(_stock, _stock + _stock_size);
+	std::cout << "Min : " << stock_min << std::endl;
+	std::cout << "Max : " << stock_max << std::endl;
 
 	return (stock_max - stock_min);
 }
