@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/14 09:24:35 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:51:18 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ int main(void)
 
 	std::cout << "a : " << *it_a << std::endl;
 	std::cout << "b : " << *it_b << std::endl;
+
+	try
+	{
+		std::cout << "a easyfind 1 : " << *easyfind(a, 0) << std::endl;
+		std::cout << "a easyfind 2 : " << *easyfind(a, 1) << std::endl;
+		std::cout << "a easyfind 3 : " << *easyfind(a, 2) << std::endl;
+		std::cout << "b easyfind 2 : " << *easyfind(b, 2) << std::endl;
+		std::cout << "b easyfind 4 : " << *easyfind(b, 4) << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception !" << std::endl;
+	}
 
 	return (0);
 }
