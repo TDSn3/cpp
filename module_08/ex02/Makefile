@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/15 21:52:08 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/16 10:33:17 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,7 @@ I_HEADERS	= -I $(INC_DIR)
 
 HEADERS		= $(shell find include/ -type f)
 
-NAME_FILE	= $(addprefix class/,												\
-								Span											\
-								MyIterator										\
-			   )																\
-			   main																\
+NAME_FILE	= main
 
 SRC			= $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))

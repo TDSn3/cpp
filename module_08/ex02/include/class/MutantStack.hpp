@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:30:26 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/15 21:55:43 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/16 10:39:55 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-# define SPAN_HPP
+#ifndef MUTANTSTACK_HPP
+# define MUTANTSTACK_HPP
 
 # include <iostream>
 # include <string>
 # include <exception>
 # include <iterator>
+# include <deque>
 
-class Span
+template<class T, class Container = deque<T> >
+class MutantStack
 {
 public:
 
@@ -30,7 +32,7 @@ public:
 			MyIterator(const MyIterator& mit);
 			~MyIterator(void);
 
-			MyIterator		&operator = (const Span::MyIterator &right);
+			MyIterator		&operator = (const MutantStack::MyIterator &right);
 			MyIterator		&operator ++ ();
 			MyIterator		operator ++ (int);
 			bool			operator == (const MyIterator& rhs) const;
@@ -44,21 +46,21 @@ public:
 			unsigned int *p;
 	};
 
-	Span(unsigned int	stock_size_max);
-	Span(const Span &src);
-	~Span(void);
+	MutantStack(unsigned int	stock_size_max);
+	MutantStack(const MutantStack &src);
+	~MutantStack(void);
 
-	Span			&operator = (const Span &right);
+	MutantStack			&operator = (const MutantStack &right);
 	void			addNumber(unsigned int nb);
-	void			addrangeiterators(Span::MyIterator first, Span::MyIterator last);
-	unsigned int	shortestSpan(void);
-	unsigned int	longestSpan(void);
+	void			addrangeiterators(MutantStack::MyIterator first, MutantStack::MyIterator last);
+	unsigned int	shortestMutantStack(void);
+	unsigned int	longestMutantStack(void);
 	void			print_stock(void) const;
 	unsigned int	*begin(void) const;
 	unsigned int	*end(void) const;
 
-	Span			&operator++(void);
-	Span			&operator++(int);
+	MutantStack			&operator++(void);
+	MutantStack			&operator++(int);
 
 protected:
 
