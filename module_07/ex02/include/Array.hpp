@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 14:49:55 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/13 20:58:31 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/16 11:21:27 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ Array<T>	&Array<T>::operator = (const Array &right)
 	std::cout << "\033[33;02;03m" << "Array : Operator = called" << "\033[00m" << std::endl;
 	delete	[] tab;
 	tab = new T[right.tab_size];
-	for (int i = 0; i < right.tab_size; i++)
+	for (unsigned int i = 0; i < right.tab_size; i++)
 		tab[i] = right.tab[i];
 	tab_size = right.tab_size;
 	return (*this);
