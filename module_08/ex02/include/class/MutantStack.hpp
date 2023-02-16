@@ -6,12 +6,15 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:30:26 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/16 12:46:50 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/17 00:06:53 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MUTANTSTACK_HPP
 # define MUTANTSTACK_HPP
+
+# define __MutantStack MutantStack<T, Container>
+# define __MS_template template<class T, class Container>
 
 # include <iostream>
 # include <string>
@@ -24,20 +27,26 @@ class MutantStack
 {
 public:
 
-	class iterator : public std::iterator<std::bidirectional_iterator_tag, T>
+	template<class T>
+	class iterator : public std::iterator<std::random_access_iterator_tag, T>
 	{
 		public:
 		
-			iterator(T	*x);
-			iterator(const iterator& mit);
+			iterator(T *x);
+			iterator(const iterator &mit);
 			~iterator(void);
 
 			iterator		&operator = (const iterator &right);
 			iterator		&operator ++ ();
 			iterator		operator ++ (int);
-			bool			operator == (const iterator& rhs) const;
-			bool			operator != (const iterator& rhs) const;
-			T	&operator * ();
+			bool			operator == (const iterator &right) const;
+			bool			operator != (const iterator &right) const;
+			T				&operator * (void);
+			int				operator > (const iterator &right);
+			int				operator < (const iterator &right);
+			int				operator >= (const iterator &right);
+			int				operator <= (const iterator &right);
+			int				operator == (const iterator &right);
 			
 		protected:
 
@@ -46,11 +55,16 @@ public:
 			T *p;
 	};
 
-	MutantStack(T const &nb);
+	MutantStack(void);
+	MutantStack(const Container &ctnr);
 	MutantStack(const MutantStack &src);
 	~MutantStack(void);
 
-	T	&top(void);
+	bool	empty(void) const;
+	size_t	size(void) const;
+	T		&top(void);
+	void	push(const T& val);
+	void	pop(void);
 
 protected:
 
@@ -64,18 +78,23 @@ private:
 /*   CONSTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-template<class T, class Container>
-MutantStack<T, Container>::MutantStack(T nb)
+__MS_template
+__MutantStack::MutantStack(void)
 {
-	std::cout << "\033[00;02;03m" << "MutantStack : Default constructor called" << "\033[00m" << std::endl;
-	_stock.push_back(nb);
-	(void) nb;
+	std::cout << "\033[00;02;03m" << "MutantStack : Void constructor called" << "\033[00m" << std::endl;
+}
+
+__MS_template
+__MutantStack::MutantStack(const Container &ctnr)
+{
+	std::cout << "\033[00;02;03m" << "MutantStack : Container constructor called" << "\033[00m" << std::endl;
+	_stock = ctnr;
 }
 
 /*   COPY CONSTRUCTEUR   **************************************************** */
 
-template<class T, class Container>
-MutantStack<T, Container>::MutantStack(const MutantStack &src)
+__MS_template
+__MutantStack::MutantStack(const MutantStack &src)
 {
 	std::cout << "\033[32;02;03m" << "MutantStack : Copy constructor called" << "\033[00m" << std::endl;
 	(void) src;
@@ -86,8 +105,8 @@ MutantStack<T, Container>::MutantStack(const MutantStack &src)
 /*   DESTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-template<class T, class Container>
-MutantStack<T, Container>::~MutantStack(void)
+__MS_template
+__MutantStack::~MutantStack(void)
 {
 	std::cout << "\033[31;01m" << "MutantStack : Destructor called" << "\033[00m" << std::endl;
 }
@@ -110,16 +129,79 @@ MutantStack<T, Container>::~MutantStack(void)
 
 /*   MÉTHODE PUBLIC   ******************************************************* */
 
-template<class T, class Container>
-T	&MutantStack<T, Container>::top(void)
+__MS_template
+bool	__MutantStack::empty(void) const
 {
+	return (_stock.empty());
+}
+
+__MS_template
+size_t	__MutantStack::size(void) const
+{
+	return (_stock.size());
+}
+
+__MS_template
+T	&__MutantStack::top(void)
+{
+	if (_stock.empty())
+		throw (std::exception());
 	return (_stock.back());
+}
+
+__MS_template
+void	__MutantStack::push(const T& val)
+{
+	_stock.push_back(val);
+}
+
+__MS_template
+void	__MutantStack::pop(void)
+{
+	_stock.pop_back();
 }
 
 /*   MÉTHODE PRIVATE   ****************************************************** */
 
 /* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
 
+/* ************************************************************************** */
+/*                                                                            */
+/*   CONSTRUCTEUR															  */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   COPY CONSTRUCTEUR   **************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   DESTRUCTEUR															  */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   OPÉRATEUR																  */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   OPÉRATEUR INTERNE   **************************************************** */
+
+/*   OPÉRATEUR EXTERNE   **************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   MÉTHODE																  */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   MÉTHODE PUBLIC   ******************************************************* */
+
+/*   MÉTHODE PRIVATE   ****************************************************** */
+
+/* ************************************************************************** */
 
 
 #endif

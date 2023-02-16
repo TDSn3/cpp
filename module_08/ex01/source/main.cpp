@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/16 16:22:57 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/16 22:20:39 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(void)
 	unsigned int	tab[1000];
 
 	for (int i = 0; i < 1000; i++)
-		tab[i] = static_cast<unsigned int>(i);
+		tab[i] = static_cast<unsigned int>(i + 100);
 	try
 	{
 		a.addNumber(7);
@@ -39,15 +39,8 @@ int main(void)
 
 		Span::MyIterator	it_1 = &tab[0];
 		Span::MyIterator	it_2 = &tab[10];
-	
-		//unsigned int xxx[10] = {9999,999,99,9};
-		std::vector<unsigned int> xxx;
-		xxx.push_back(9999);
-		xxx.push_back(999);
-		xxx.push_back(99);
-		xxx.push_back(9);
-		
-		a.addrangeiterators(xxx.begin(), xxx.end());
+
+		a.addrangeiterators(it_1, it_2);
 		std::cout << "-----------" << std::endl;
 
 		a.print_stock();

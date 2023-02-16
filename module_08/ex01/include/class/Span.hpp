@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:30:26 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/16 16:29:10 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/16 23:59:24 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ public:
 			~MyIterator(void);
 
 			MyIterator		&operator = (const Span::MyIterator &right);
-			MyIterator		&operator ++ ();
+			MyIterator		&operator ++ (void);
 			MyIterator		operator ++ (int);
 			bool			operator == (const MyIterator& rhs) const;
 			bool			operator != (const MyIterator& rhs) const;
-			unsigned int	&operator * ();
-			
+			unsigned int	&operator * (void);
+			int				operator > (const MyIterator &right);
+			int				operator < (const MyIterator &right);
+			int				operator >= (const MyIterator &right);
+			int				operator <= (const MyIterator &right);
+
 		protected:
 
 		private:
@@ -50,8 +54,7 @@ public:
 
 	Span			&operator = (const Span &right);
 	void			addNumber(unsigned int nb);
-	template <class T<unsigned int> >
-	void			addrangeiterators(T first, T last);
+	void			addrangeiterators(MyIterator first, MyIterator last);
 	unsigned int	shortestSpan(void);
 	unsigned int	longestSpan(void);
 	void			print_stock(void) const;
@@ -70,14 +73,4 @@ private:
 	unsigned int		*_stock;
 };
 
-template <class T<unsigned int> >
-void	Span::addrangeiterators(T first,  T last)
-{
-	while (first != last)
-	{
-		addNumber(*first);
-		first++;
-	}
-	//addNumber(*first);
-}
 #endif

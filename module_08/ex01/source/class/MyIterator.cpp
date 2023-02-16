@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:52:16 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/15 21:58:31 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/17 00:02:15 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,40 @@ MyIterator	MyIterator::operator++(int)
 	return (tmp);
 }
 
-bool	MyIterator::operator==(const MyIterator& rhs) const
+bool	MyIterator::operator==(const MyIterator& right) const
 {
-	return (p==rhs.p);
+	return (p == right.p);
 }
 
-bool	MyIterator::operator!=(const MyIterator& rhs) const
+bool	MyIterator::operator!=(const MyIterator& right) const
 {
-	return (p!=rhs.p);
+	return (p != right.p);
 }
 
-unsigned int	&MyIterator::operator*()
+unsigned int	&MyIterator::operator * (void)
 {
 	return (*p);
 }
 
+int	MyIterator::operator > (const MyIterator &right)
+{
+	return (p > right.p);
+}
+
+int	MyIterator::operator < (const MyIterator &right)
+{
+	return (p < right.p);
+}
+
+int	MyIterator::operator >= (const MyIterator &right)
+{
+	return (p  >= right.p);
+}
+
+int	MyIterator::operator <= (const MyIterator &right)
+{
+	return (p  <= right.p);
+}
 
 /*   OPÉRATEUR EXTERNE   **************************************************** */
 
