@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/15 22:33:13 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:22:57 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,14 @@ int main(void)
 		Span::MyIterator	it_1 = &tab[0];
 		Span::MyIterator	it_2 = &tab[10];
 	
-		a.addrangeiterators(it_1, it_2);
+		//unsigned int xxx[10] = {9999,999,99,9};
+		std::vector<unsigned int> xxx;
+		xxx.push_back(9999);
+		xxx.push_back(999);
+		xxx.push_back(99);
+		xxx.push_back(9);
+		
+		a.addrangeiterators(xxx.begin(), xxx.end());
 		std::cout << "-----------" << std::endl;
 
 		a.print_stock();
@@ -64,3 +71,4 @@ int main(void)
 }
 	return (0);
 }
+

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:30:26 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/16 12:01:34 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/16 12:46:50 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ public:
 			T *p;
 	};
 
-	MutantStack(T nb);
+	MutantStack(T const &nb);
 	MutantStack(const MutantStack &src);
 	~MutantStack(void);
 

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 16:00:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/15 22:34:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:17:49 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,6 @@ void	Span::addNumber(unsigned int nb)
 	_stock_size++;
 }
 
-void	Span::addrangeiterators(Span::MyIterator first, Span::MyIterator last)
-{
-	while (first != last)
-	{
-		addNumber(*first);
-		first++;
-	}
-	addNumber(*first);
-}
 
 unsigned int	Span::shortestSpan(void)
 {
@@ -144,7 +135,7 @@ unsigned int	*Span::end(void) const
 {
 	if (_stock_size < 1)
 		return (NULL);
-	return (&_stock[_stock_size - 1]);
+	return (&_stock[_stock_size]);
 }
 
 /*   MÉTHODE PRIVATE   ****************************************************** */

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:30:26 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/15 21:55:43 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:29:10 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ public:
 
 	Span			&operator = (const Span &right);
 	void			addNumber(unsigned int nb);
-	void			addrangeiterators(Span::MyIterator first, Span::MyIterator last);
+	template <class T<unsigned int> >
+	void			addrangeiterators(T first, T last);
 	unsigned int	shortestSpan(void);
 	unsigned int	longestSpan(void);
 	void			print_stock(void) const;
@@ -69,4 +70,14 @@ private:
 	unsigned int		*_stock;
 };
 
+template <class T<unsigned int> >
+void	Span::addrangeiterators(T first,  T last)
+{
+	while (first != last)
+	{
+		addNumber(*first);
+		first++;
+	}
+	//addNumber(*first);
+}
 #endif
