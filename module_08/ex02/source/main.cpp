@@ -6,13 +6,15 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/16 23:57:09 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/17 09:43:54 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.hpp>
 
+
 int main(void)
+{
 {
 	std::vector<int>	vect_a;
 	
@@ -20,14 +22,8 @@ int main(void)
 	vect_a.push_back(9);
 	vect_a.push_back(8);
 
-
-
-
-	MutantStack<int, std::vector<int> >	a(vect_a);
+	MutantStack<int, std::vector<int> >	a_my_stack(vect_a);
 	std::stack<int, std::vector<int> >	b(vect_a);
-
-
-
 
 	b.push(55);
 	std::cout << b.top() << std::endl;
@@ -40,34 +36,26 @@ int main(void)
 
 	std::cout << "----------" << std::endl;
 
-	a.push(55);
-	std::cout << a.top() << std::endl;
-	a.pop();
-	std::cout << a.top() << std::endl;
-	a.pop();
-	std::cout << a.top() << std::endl;
-	a.pop();
-	std::cout << a.top() << std::endl;
-
-
-
-
-	return (0);
+	a_my_stack.push(55);
+	std::cout << a_my_stack.top() << std::endl;
+	a_my_stack.pop();
+	std::cout << a_my_stack.top() << std::endl;
+	a_my_stack.pop();
+	std::cout << a_my_stack.top() << std::endl;
+	a_my_stack.pop();
+	std::cout << a_my_stack.top() << std::endl;
 }
-
-/*
-int main()
 {
 	MutantStack<int> mstack;
 
 	mstack.push(5);
 	mstack.push(17);
 
-	std::cout << mstack.top() << std::endl;
+	std::cout << "Top : " << mstack.top() << std::endl;
 
 	mstack.pop();
 
-	std::cout << mstack.size() << std::endl;
+	std::cout << "Size : " << mstack.size() << std::endl;
 
 	mstack.push(3);
 	mstack.push(5);
@@ -86,6 +74,6 @@ int main()
 		++it;
 	}
 	std::stack<int> s(mstack);
+}
 	return (0);
 }
-*/
