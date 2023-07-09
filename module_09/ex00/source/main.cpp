@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/08 11:37:37 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/09 17:26:01 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <header.hpp>
 
 int	read_file(std::ifstream &file);
-int	split_date(std::string &line);
+int	split_line(std::string &line);
 void print_error(int err);
 
 int main(int argc, char **argv)
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-	std::ifstream	file(argv[1]);
+	std::ifstream						file(argv[1]);
 
 	if (!file.is_open() || read_file(file))
 	{
@@ -50,7 +50,7 @@ int	read_file(std::ifstream &file)
 
 		if (i == 0 && line == "date | value")
 			continue ;
-		print_error(split_date(line));
+		print_error(split_line(line));
 		i++;
 	}
 	return (0);
@@ -61,15 +61,17 @@ void print_error(int err)
 	if (err)
 	{
 		if (err == 1)
-			std::cout << "Error: syntax. More or minus than 3 args." << std::endl;
+			std::cerr << "Error: syntax. More or minus than 3 args." << std::endl;
 		else if (err == 2)
-			std::cout << "Error: syntax. Not a pipe." << std::endl;
+			std::cerr << "Error: syntax. Not a pipe." << std::endl;
 		else if (err == 3)
-			std::cout << "Error: syntax. Bad date format. YYYY/MM/DD." << std::endl;
+			std::cerr << "Error: syntax. Bad date format. YYYY/MM/DD." << std::endl;
+		else if (err == 4)
+			std::cerr << "Error: syntax. Bad value of btc." << std::endl;
 	}
 }
 
-int	split_date(std::string &line)
+int	split_line(std::string &line)
 {
 	unsigned int		i;
 	unsigned int		j;
@@ -84,11 +86,25 @@ int	split_date(std::string &line)
 
 		if (i == 0)			// date
 		{
+			// int					stock_i_date;
+			std::string			stock_date;
 			std::istringstream	ss2(stock_line);
 
-			while (std::getline(ss2, stock_line, '-'))
+			while (std::getline(ss2, stock_date, '-'))
 			{
-				std::cout << "date: " << stock_line << std::endl;
+				size_t	k;
+
+				std::cout << "date: " << stock_date << std::endl;
+
+				for (k = 0; stock_date[k]; k++)
+					if (!std::isdigit(stock_date[k]))
+						return (3);			// Error: syntax. Bad date format. YYYY/MM/DD.
+				if (j == 0 && k != 4)		// year
+					return (3);				// Error: syntax. Bad date format. YYYY/MM/DD.
+				else if (j > 0 && k != 2)	// month/day
+					return (3);				// Error: syntax. Bad date format. YYYY/MM/DD.
+				// stock_i_date = std::stoi(stock_date);
+
 				j++;
 			}
 			if (j != 3)
@@ -101,7 +117,12 @@ int	split_date(std::string &line)
 		}
 		else if (i == 2)	//value
 		{
+			size_t	k;
+			
 			std::cout << "value: " << stock_line << std::endl;
+			for (k = 0; stock_line[k]; k++)
+				if (!std::isdigit(stock_line[k]))
+					return (4);	// Error: syntax. Bad value of btc.
 		}
 		i++;
 	}
