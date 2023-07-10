@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/10 11:43:08 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/10 18:51:06 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 int		read_file(std::ifstream &file, std::map<int, float> &db);
 int		split_line(std::string &line, std::map<int, float> &db);
 bool	check_date(int year, int month, int day);
+int		read_data_csv(std::map<int, float> &db);
+int		split_line_csv(std::ifstream &file, std::map<int, float> &db);
+int		split_date_csv(std::string &line, std::map<int, float> &db);
 void	print_error(int err);
 
 int		main(int argc, char **argv)
@@ -37,6 +40,11 @@ int		main(int argc, char **argv)
 	}
 	file.close();
 
+	for (std::map<int, float>::iterator it = db.begin(); it != db.end(); it++)
+        std::cout << "Clé : " << it->first << ", Valeur : " << it->second << std::endl;
+
+	read_data_csv(db);
+
 	return (0);
 }
 
@@ -50,7 +58,7 @@ int		read_file(std::ifstream &file, std::map<int, float> &db)
 	while (std::getline(file, line))
 	{
 		if (line.size() != 0)
-			std::cout << "line> "<< line << line.size() << std::endl;
+			std::cout << line << std::endl;
 
 		if ((i == 0 && line == "date | value") || line.size() == 0)
 			continue ;
@@ -115,7 +123,6 @@ int		split_line(std::string &line, std::map<int, float> &db)
 				}
 				catch(const std::exception& e)
 				{
-					std::cerr << e.what() << ". ";
 					return (5);				// Error: syntax. Bad value of date.
 				}
 				if (j < 3)
@@ -143,7 +150,6 @@ int		split_line(std::string &line, std::map<int, float> &db)
 			}
 			catch(const std::exception& e)
 			{
-				std::cerr << e.what() << ". ";
 				return (4);					// Error: syntax. Bad value of btc.
 			}
 			if (stock_i_value < 0 || stock_i_value > 1000)
@@ -162,12 +168,12 @@ int		split_line(std::string &line, std::map<int, float> &db)
 	return (0);
 }
 
-bool check_leap_year(int year)
+bool 	check_leap_year(int year)
 {
 	return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
 
-bool check_date(int year, int month, int day)
+bool 	check_date(int year, int month, int day)
 {
 	int	day_month[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -178,4 +184,57 @@ bool check_date(int year, int month, int day)
 		day_month[1] = 29;
 
 	return (day <= day_month[month - 1]);
+}
+
+int		read_data_csv(std::map<int, float> &db)
+{
+	std::ifstream	file("source/data.csv");
+
+	if (!file.is_open() || split_line_csv(file, db))
+	{
+		std::cerr << "Error: could not open file." << std::endl;
+		return (1);
+	}
+	file.close();
+
+	return (0);
+}
+
+int		split_line_csv(std::ifstream &file, std::map<int, float> &db)
+{
+	unsigned int		i;
+	unsigned int		j;
+	std::string			line;
+
+	i = 0;
+	j = 0;
+	while (std::getline(file, line))
+	{
+		if (i == 0 && line == "date,exchange_rate")
+			continue ;
+		
+		std::ifstream	ss(line);
+
+		while (std::getline(ss, line, ','))
+		{
+			if (j == 0)			// date
+			{
+				
+			}
+			else if (j == 1)	// value
+			{
+				
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	(void) db;
+	return (0);
+}
+
+int		split_date_csv(std::string &line, std::map<int, float> &db)
+{
+	return (0);
 }
