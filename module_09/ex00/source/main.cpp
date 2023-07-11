@@ -6,24 +6,25 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/10 18:51:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:27:56 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/header.hpp"
 #include <header.hpp>
 
-int		read_file(std::ifstream &file, std::map<int, float> &db);
-int		split_line(std::string &line, std::map<int, float> &db);
+int		read_file(std::ifstream &file, std::map<int, float> &db_input);
+int		split_line(std::string &line, std::map<int, float> &db_input);
 bool	check_date(int year, int month, int day);
-int		read_data_csv(std::map<int, float> &db);
-int		split_line_csv(std::ifstream &file, std::map<int, float> &db);
-int		split_date_csv(std::string &line, std::map<int, float> &db);
+int		read_data_csv(std::map<int, double> &db_data_csv);
+int		split_line_csv(std::ifstream &file, std::map<int, double> &db_data_csv);
+void	put_date_cout(int date);
 void	print_error(int err);
 
 int		main(int argc, char **argv)
 {
-	std::map<int, float>	db;
+	std::map<int, float>	db_input;
+	std::map<int, double>	db_data_csv;
 
 	if (argc != 2)
 	{
@@ -33,22 +34,38 @@ int		main(int argc, char **argv)
 
 	std::ifstream						file(argv[1]);
 
-	if (!file.is_open() || read_file(file, db))
+	if (!file.is_open() || read_file(file, db_input))
 	{
 		std::cerr << "Error: could not open file." << std::endl;
 		return (1);
 	}
 	file.close();
 
-	for (std::map<int, float>::iterator it = db.begin(); it != db.end(); it++)
-        std::cout << "Clé : " << it->first << ", Valeur : " << it->second << std::endl;
+	read_data_csv(db_data_csv);
 
-	read_data_csv(db);
+	std::cout << "\n\n" << std::endl;
+
+	for (std::map<int, float>::iterator it = db_input.begin(); it != db_input.end(); it++)
+	{		
+		std::map<int, double>::iterator	stock_it_lower_bound;
+
+		stock_it_lower_bound = db_data_csv.lower_bound(it->first);
+		if (stock_it_lower_bound->first != it->first && stock_it_lower_bound != db_data_csv.begin())
+			stock_it_lower_bound--;
+
+		put_date_cout(it->first);
+		std::cout << " | " << it->second << std::endl;
+
+		std::cout << COLOR_BOLD_MAGENTA;
+		put_date_cout(stock_it_lower_bound->first);
+		std::cout << " > " << stock_it_lower_bound->second << std::endl;
+		std::cout << COLOR_RESET << std::endl;
+	}
 
 	return (0);
 }
 
-int		read_file(std::ifstream &file, std::map<int, float> &db)
+int		read_file(std::ifstream &file, std::map<int, float> &db_input)
 {
 	unsigned int		i;
 	std::string			line;
@@ -61,8 +78,11 @@ int		read_file(std::ifstream &file, std::map<int, float> &db)
 			std::cout << line << std::endl;
 
 		if ((i == 0 && line == "date | value") || line.size() == 0)
+		{
+			i++;
 			continue ;
-		print_error(split_line(line, db));
+		}
+		print_error(split_line(line, db_input));
 		i++;
 	}
 	return (0);
@@ -87,12 +107,12 @@ void	print_error(int err)
 	}
 }
 
-int		split_line(std::string &line, std::map<int, float> &db)
+int		split_line(std::string &line, std::map<int, float> &db_input)
 {
 	unsigned int		i;
 	unsigned int		j;
 	int					tab_date[3];
-	float				stock_i_value;
+	float				stock_f_value;
 	std::string			stock_line;
 	std::istringstream	ss(line);
 
@@ -119,7 +139,7 @@ int		split_line(std::string &line, std::map<int, float> &db)
 					return (3);				// Error: syntax. Bad date format. YYYY-MM-DD.
 				try
 				{
-					stock_i_date = std::stoi(stock_date);
+					stock_i_date = std::atoi(stock_date.c_str());
 				}
 				catch(const std::exception& e)
 				{
@@ -146,13 +166,13 @@ int		split_line(std::string &line, std::map<int, float> &db)
 					return (4);				// Error: syntax. Bad value of btc.
 			try
 			{
-				stock_i_value = std::stof(stock_line);
+				stock_f_value = (float) std::atof(stock_line.c_str());
 			}
 			catch(const std::exception& e)
 			{
 				return (4);					// Error: syntax. Bad value of btc.
 			}
-			if (stock_i_value < 0 || stock_i_value > 1000)
+			if (stock_f_value < 0 || stock_f_value > 1000)
 				return (4);					// Error: syntax. Bad value of btc.
 		}
 		i++;
@@ -161,9 +181,9 @@ int		split_line(std::string &line, std::map<int, float> &db)
 		return (1);							// Error: syntax. More or minus than 3 args.
 	if (!check_date(tab_date[0], tab_date[1], tab_date[2]))
 		return (5);							// Error: syntax. Bad value of date.
-	db[(tab_date[0] * 10000) + (tab_date[1] * 100) + tab_date[2]] = stock_i_value;
+	db_input[(tab_date[0] * 10000) + (tab_date[1] * 100) + tab_date[2]] = stock_f_value;
 	std::cout << COLOR_BOLD_MAGENTA;
-	std::cout << (tab_date[0] * 10000) + (tab_date[1] * 100) + tab_date[2] << " " << stock_i_value << "\n";
+	std::cout << (tab_date[0] * 10000) + (tab_date[1] * 100) + tab_date[2] << " " << stock_f_value << "\n";
 	std::cout << COLOR_RESET << std::endl;
 	return (0);
 }
@@ -186,11 +206,11 @@ bool 	check_date(int year, int month, int day)
 	return (day <= day_month[month - 1]);
 }
 
-int		read_data_csv(std::map<int, float> &db)
+int		read_data_csv(std::map<int, double> &db_data_csv)
 {
 	std::ifstream	file("source/data.csv");
 
-	if (!file.is_open() || split_line_csv(file, db))
+	if (!file.is_open() || split_line_csv(file, db_data_csv))
 	{
 		std::cerr << "Error: could not open file." << std::endl;
 		return (1);
@@ -200,41 +220,71 @@ int		read_data_csv(std::map<int, float> &db)
 	return (0);
 }
 
-int		split_line_csv(std::ifstream &file, std::map<int, float> &db)
+int		split_line_csv(std::ifstream &file, std::map<int, double> &db_data_csv)
 {
 	unsigned int		i;
 	unsigned int		j;
+	int					tab_date[3];
+	double				stock_d_value;
 	std::string			line;
+	std::string			stock;
 
 	i = 0;
 	j = 0;
 	while (std::getline(file, line))
 	{
 		if (i == 0 && line == "date,exchange_rate")
+		{
+			i++;
 			continue ;
+		}
 		
-		std::ifstream	ss(line);
+		std::istringstream	ss(line);
 
-		while (std::getline(ss, line, ','))
+		while (std::getline(ss, stock, ','))
 		{
 			if (j == 0)			// date
 			{
-				
+				int					k;
+				int					stock_i_date;
+				std::string			stock_date;
+				std::istringstream	ss2(stock);
+
+				k = 0;
+				while (std::getline(ss2, stock_date, '-'))
+				{
+					stock_i_date = std::atoi(stock_date.c_str());
+					tab_date[k] = stock_i_date;
+					k++;
+				}
 			}
 			else if (j == 1)	// value
 			{
-				
+				stock_d_value = std::atof(stock.c_str());
 			}
 			j++;
 		}
 		j = 0;
+		db_data_csv[(tab_date[0] * 10000) + (tab_date[1] * 100) + tab_date[2]] = stock_d_value;
 		i++;
 	}
-	(void) db;
 	return (0);
 }
 
-int		split_date_csv(std::string &line, std::map<int, float> &db)
+void	put_date_cout(int date)
 {
-	return (0);
+	int	y;
+	int	m;
+	int	d;
+
+	y = date / 10000;
+	m = (date / 100) % 100;
+	d = date % 100;
+	std::cout << y << "-";
+	if (m < 10)
+		std::cout << "0";
+	std::cout << m << "-";
+	if (d < 10)
+		std::cout << "0";
+	std::cout << d;
 }
