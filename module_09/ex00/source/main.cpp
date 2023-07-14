@@ -6,15 +6,15 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/11 12:27:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:23:06 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/header.hpp"
 #include <header.hpp>
 
-int		read_file(std::ifstream &file, std::map<int, float> &db_input);
-int		split_line(std::string &line, std::map<int, float> &db_input);
+int		read_file(std::ifstream &file, std::map<int, double> &db_input);
+int		split_line(std::string &line, std::map<int, double> &db_input);
 bool	check_date(int year, int month, int day);
 int		read_data_csv(std::map<int, double> &db_data_csv);
 int		split_line_csv(std::ifstream &file, std::map<int, double> &db_data_csv);
@@ -23,7 +23,7 @@ void	print_error(int err);
 
 int		main(int argc, char **argv)
 {
-	std::map<int, float>	db_input;
+	std::map<int, double>	db_input;
 	std::map<int, double>	db_data_csv;
 
 	if (argc != 2)
@@ -45,7 +45,7 @@ int		main(int argc, char **argv)
 
 	std::cout << "\n\n" << std::endl;
 
-	for (std::map<int, float>::iterator it = db_input.begin(); it != db_input.end(); it++)
+	for (std::map<int, double>::iterator it = db_input.begin(); it != db_input.end(); it++)
 	{		
 		std::map<int, double>::iterator	stock_it_lower_bound;
 
@@ -54,18 +54,20 @@ int		main(int argc, char **argv)
 			stock_it_lower_bound--;
 
 		put_date_cout(it->first);
-		std::cout << " | " << it->second << std::endl;
+		std::cout << " | " << it->second << " btc" << "\n";
 
 		std::cout << COLOR_BOLD_MAGENTA;
 		put_date_cout(stock_it_lower_bound->first);
-		std::cout << " > " << stock_it_lower_bound->second << std::endl;
-		std::cout << COLOR_RESET << std::endl;
+		std::cout << " | " << stock_it_lower_bound->second << " $";
+		std::cout << COLOR_RESET << "\n";
+		std::cout << "          -> ";
+		std::cout << it->second * stock_it_lower_bound->second << "\n" << std::endl;
 	}
 
 	return (0);
 }
 
-int		read_file(std::ifstream &file, std::map<int, float> &db_input)
+int		read_file(std::ifstream &file, std::map<int, double> &db_input)
 {
 	unsigned int		i;
 	std::string			line;
@@ -107,12 +109,12 @@ void	print_error(int err)
 	}
 }
 
-int		split_line(std::string &line, std::map<int, float> &db_input)
+int		split_line(std::string &line, std::map<int, double> &db_input)
 {
 	unsigned int		i;
 	unsigned int		j;
 	int					tab_date[3];
-	float				stock_f_value;
+	double				stock_d_value;
 	std::string			stock_line;
 	std::istringstream	ss(line);
 
@@ -122,7 +124,7 @@ int		split_line(std::string &line, std::map<int, float> &db_input)
 	{
 		if (i == 0)							// date
 		{
-			int					stock_i_date;
+			long int			stock_i_date;
 			std::string			stock_date;
 			std::istringstream	ss2(stock_line);
 
@@ -137,16 +139,11 @@ int		split_line(std::string &line, std::map<int, float> &db_input)
 					return (3);				// Error: syntax. Bad date format. YYYY-MM-DD.
 				else if (j > 0 && k != 2)	// month/day
 					return (3);				// Error: syntax. Bad date format. YYYY-MM-DD.
-				try
-				{
-					stock_i_date = std::atoi(stock_date.c_str());
-				}
-				catch(const std::exception& e)
-				{
+				stock_i_date = std::atol(stock_date.c_str());
+				if (check_error_atol(stock_date, stock_i_date))
 					return (5);				// Error: syntax. Bad value of date.
-				}
 				if (j < 3)
-					tab_date[j] = stock_i_date;
+					tab_date[j] = (int) stock_i_date;
 				j++;
 			}
 			if (j != 3)
@@ -164,15 +161,10 @@ int		split_line(std::string &line, std::map<int, float> &db_input)
 			for (k = 0; stock_line[k]; k++)
 				if (!std::isdigit(stock_line[k]) && stock_line[k] != '.')
 					return (4);				// Error: syntax. Bad value of btc.
-			try
-			{
-				stock_f_value = (float) std::atof(stock_line.c_str());
-			}
-			catch(const std::exception& e)
-			{
+			stock_d_value = std::atof(stock_line.c_str());
+			if (check_error_atof(stock_line, stock_d_value))
 				return (4);					// Error: syntax. Bad value of btc.
-			}
-			if (stock_f_value < 0 || stock_f_value > 1000)
+			if (stock_d_value < 0 || stock_d_value > 1000)
 				return (4);					// Error: syntax. Bad value of btc.
 		}
 		i++;
@@ -181,9 +173,9 @@ int		split_line(std::string &line, std::map<int, float> &db_input)
 		return (1);							// Error: syntax. More or minus than 3 args.
 	if (!check_date(tab_date[0], tab_date[1], tab_date[2]))
 		return (5);							// Error: syntax. Bad value of date.
-	db_input[(tab_date[0] * 10000) + (tab_date[1] * 100) + tab_date[2]] = stock_f_value;
+	db_input[(tab_date[0] * 10000) + (tab_date[1] * 100) + tab_date[2]] = stock_d_value;
 	std::cout << COLOR_BOLD_MAGENTA;
-	std::cout << (tab_date[0] * 10000) + (tab_date[1] * 100) + tab_date[2] << " " << stock_f_value << "\n";
+	std::cout << (tab_date[0] * 10000) + (tab_date[1] * 100) + tab_date[2] << " " << stock_d_value << "\n";
 	std::cout << COLOR_RESET << std::endl;
 	return (0);
 }

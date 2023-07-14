@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/11 11:09:17 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:01:15 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,8 @@
 # include <map>
 
 # include "colors.hpp"
+
+int	check_error_atol(std::string str, long int result);
+int	check_error_atof(std::string str, double result);
 
 #endif
