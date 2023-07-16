@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/14 11:23:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/16 10:29:36 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(int argc, char **argv)
 	std::map<int, double>	db_input;
 	std::map<int, double>	db_data_csv;
 
-	if (argc != 2)
+	if (argc != 2 || !argv[1])
 	{
 		std::cerr << "Error: bad numbers of arguments." << std::endl;
 		return (1);
