@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/16 10:29:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/18 09:42:54 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int		split_line(std::string &line, std::map<int, double> &db_input)
 				if (check_error_atol(stock_date, stock_i_date))
 					return (5);				// Error: syntax. Bad value of date.
 				if (j < 3)
-					tab_date[j] = (int) stock_i_date;
+					tab_date[j] = static_cast<int>(stock_i_date);
 				j++;
 			}
 			if (j != 3)
