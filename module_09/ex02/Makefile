@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/07/19 17:20:54 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/07/19 18:08:12 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,11 @@ I_HEADERS	= -I $(INC_DIR)
 
 HEADERS		= $(shell find include/ -type f)
 
-NAME_FILE	= main		\
-			  parsing	\
+NAME_FILE	= $(addprefix class/,				\
+								Vect_list		\
+			   )								\
+			   main								\
+			   parsing							\
 
 SRC			= $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))

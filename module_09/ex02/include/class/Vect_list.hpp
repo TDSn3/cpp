@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.hpp                                         :+:      :+:    :+:   */
+/*   Vect_list.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/19 18:10:19 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/09 12:30:26 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/07/19 18:16:54 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_HPP
-# define HEADER_HPP
+#ifndef VECT_LIST_HPP
+# define VECT_LIST_HPP
 
-# include <cstdlib>
 # include <iostream>
-# include <fstream>
-# include <sstream>
-# include <cctype>
-# include <memory>
-# include <vector>
+# include <string>
+# include <exception>
 
-# include "colors.hpp"
-# include "./class/Vect_list.hpp"
+class Vect_list
+{
+	
+public:
 
-std::vector<int>	*parsing(std::string &line);
+	Vect_list(char *arg);
+	Vect_list(const Vect_list &src);
+	~Vect_list(void);
+
+protected:
+
+private:
+
+};
 
 #endif
