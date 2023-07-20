@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/20 18:28:40 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:42:57 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ int	main(int argc, char **argv)
 	if (!vect_list_pair)
 		return (1);
 
+	for (std::vector<std::vector<int> * >::iterator it = vect_list_pair->begin(); it != vect_list_pair->end(); it++)
+	{
+		if (*it)
+		{
+			delete *it;
+			*it = NULL;
+		}
+	}
+	delete vect_list_pair;
 	delete vect_line;
 
 	return (0);

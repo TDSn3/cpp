@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:02:58 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/20 18:28:29 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:43:27 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,20 @@ std::vector<std::vector<int> * >	*make_pair(std::vector<int> *vect)
 			{
 				std::cerr << COLOR_BOLD_RED << e.what() << COLOR_RESET << std::endl;
 				delete p_vect_pair;
+
+				for (std::vector<std::vector<int> * >::iterator it2 = vect_list_pair->begin(); it2 != vect_list_pair->end(); it2++)
+				{
+					if (*it2)
+					{
+						delete *it2;
+						*it2 = NULL;
+					}
+				}
+
+				delete vect_list_pair;
 				return (NULL);
 			}
-			
+
 			(*p_vect_pair)[0] = *it;
 
 			if (it + 1 == vect->end())
