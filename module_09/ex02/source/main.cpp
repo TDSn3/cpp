@@ -6,14 +6,14 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/19 18:32:12 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:28:40 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/header.hpp"
 #include <header.hpp>
 
-void	next(std::vector<int> *vect);
+int	next(std::vector<int> *vect);
 
 int	main(int argc, char **argv)
 {
@@ -25,38 +25,21 @@ int	main(int argc, char **argv)
 
 	std::cout << argv[1] << std::endl;
 
-	std::vector<int>	*vect = NULL;
-	std::string			line(argv[1]);
+	std::vector<int>					*vect_line = NULL;
+	std::string							line(argv[1]);
 
-	vect = parsing(line);
-	if (!vect)
+	vect_line = parsing(line);
+	if (!vect_line)
 		return (1);
 
-	next(vect);
+	std::vector<std::vector<int> * >	*vect_list_pair;
 
-	delete vect;
+	vect_list_pair = NULL;
+	vect_list_pair = make_pair(vect_line);
+	if (!vect_list_pair)
+		return (1);
+
+	delete vect_line;
 
 	return (0);
-}
-
-void	next(std::vector<int> *vect)
-{
-	std::vector<std::vector<int> >	vect_list(vect->size());
-	size_t							i;
-
-	i = 0;
-	for (std::vector<int>::iterator it = vect->begin(); it != vect->end(); it++)
-	{
-		if (i == 0)
-		{
-			i++;
-		}
-		else
-		{
-			if (i < 2)
-				i++;
-			else
-				i = 0;
-		}
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/19 18:10:19 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:27:29 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "colors.hpp"
 # include "./class/Vect_list.hpp"
 
-std::vector<int>	*parsing(std::string &line);
+std::vector<int>					*parsing(std::string &line);
+std::vector<std::vector<int> * >	*make_pair(std::vector<int> *vect);
 
 #endif
