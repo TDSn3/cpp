@@ -6,14 +6,14 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:02:58 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/20 19:11:00 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:21:06 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/header.hpp"
 #include <header.hpp>
 
-void	sort_pair(std::vector<std::vector<int> * > *vect_list_pair);
+//void	sort_pair(std::vector<std::vector<int> * > *vect_list_pair);
 
 std::vector<std::vector<int> * >	*make_pair(std::vector<int> *vect)
 {
@@ -82,7 +82,7 @@ std::vector<std::vector<int> * >	*make_pair(std::vector<int> *vect)
 
 	std::cout << "Make pair sorted :" << std::endl ;
 
-	sort_pair(vect_list_pair);
+	//sort_pair(vect_list_pair);
 
 	for (std::vector<std::vector<int> * >::iterator it = vect_list_pair->begin(); it != vect_list_pair->end(); it++)
 	{
@@ -97,20 +97,20 @@ std::vector<std::vector<int> * >	*make_pair(std::vector<int> *vect)
 	return (vect_list_pair);
 }
 
-void	sort_pair(std::vector<std::vector<int> * > *vect_list_pair)
-{
-	for (std::vector<std::vector<int> * >::iterator it = vect_list_pair->begin(); it != vect_list_pair->end(); it++)
-	{
-		if ( (*(*it))[1] >= 0)
-		{
-			if ( (*(*it))[0] > (*(*it))[1])
-			{
-				int	stock;
+//void	sort_pair(std::vector<std::vector<int> * > *vect_list_pair)
+//{
+//	for (std::vector<std::vector<int> * >::iterator it = vect_list_pair->begin(); it != vect_list_pair->end(); it++)
+//	{
+//		if ( (*(*it))[1] >= 0)
+//		{
+//			if ( (*(*it))[0] > (*(*it))[1])
+//			{
+//				int	stock;
 				
-				stock = (*(*it))[0];
-				(*(*it))[0] = (*(*it))[1];
-				(*(*it))[1] = stock;
-			}
-		}
-	}	
-}
+//				stock = (*(*it))[0];
+//				(*(*it))[0] = (*(*it))[1];
+//				(*(*it))[1] = stock;
+//			}
+//		}
+//	}	
+//}

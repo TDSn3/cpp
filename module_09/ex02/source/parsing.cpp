@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 17:18:40 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/19 17:54:00 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/21 09:45:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ std::vector<int>	*parsing(std::string &line)
 
 		if (stock.empty())
 			continue ;
-		for (std::string::iterator it = stock.begin(); it != stock.end(); it++)
+		for (std::string :: iterator it = stock.begin(); it != stock.end(); it++)
 		{
 			if (!std::isdigit(*it))
 			{
@@ -62,7 +62,7 @@ std::vector<int>	*parsing(std::string &line)
 		ret->push_back(static_cast<int>(stock_i_num));
 	}
 
-	for (std::vector<int>::iterator it = ret->begin(); it != ret->end(); it++)
+	for (std::vector<int> :: iterator it = ret->begin(); it != ret->end(); it++)
 		std::cout << *it << std::endl;
 
 	return (ret);

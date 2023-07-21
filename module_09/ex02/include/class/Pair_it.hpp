@@ -1,42 +1,67 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vect_list.cpp                                      :+:      :+:    :+:   */
+/*   Pair_it.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 16:00:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/19 18:17:04 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/09 12:30:26 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/07/21 10:32:45 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/header.hpp"
-#include <header.hpp>
+#ifndef PAIR_IT_HPP
+# define PAIR_IT_HPP
+
+# include <cstdlib>
+# include <iostream>
+# include <fstream>
+# include <sstream>
+# include <cctype>
+# include <memory>
+# include <vector>
+# include <exception>
+
+// std::vector<int>::iterator it
+
+template<typename T>
+class Pair_it
+{
+	public:
+
+		Pair_it(T iterator, size_t size);
+		~Pair_it(void);
+
+	protected:
+
+		T		_iterator;
+		size_t	_size;
+
+	private:
+
+};
+
+
 
 /* ************************************************************************** */
 /*                                                                            */
 /*   CONSTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-Vect_list::Vect_list(char *arg)
+template<typename T>
+Pair_it<T>::Pair_it(T iterator, size_t size) : _iterator(iterator), _size(size)
 {
-	(void) arg;
 }
-
 
 /*   COPY CONSTRUCTEUR   **************************************************** */
- 
-Vect_list::Vect_list(const Vect_list &src)
-{
-	(void) src;
-}
 
 /* ************************************************************************** */
 /*                                                                            */
 /*   DESTRUCTEUR															  */
 /*                                                                            */
 /* ************************************************************************** */
-Vect_list::~Vect_list(void)
+template<typename T>
+Pair_it<T>::~Pair_it(void)
 {
 }
 
@@ -61,3 +86,5 @@ Vect_list::~Vect_list(void)
 /*   MÉTHODE PRIVATE   ****************************************************** */
 
 /* ************************************************************************** */
+
+#endif
