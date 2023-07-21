@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/21 11:57:53 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:51:37 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,74 @@ void	recursive_sort_biggest_num_pairs(std::vector<int> :: iterator it1, std::vec
 			static_cast<size_t>( size_it2 / 2 + plus_if_odd2 ),
 			size_it2 / 2 );
 	}
+
+	std::cout << "\n______" << std::endl;
+	if (size_it1 && size_it2)
+	{
+		std::vector<int>	stock;
+		size_t				i;
+		size_t				i1;
+		size_t				i2;
+		int					stock_it1;
+		int					stock_it2;
+
+		i = 0;
+		i1 = 0;
+		i2 = 0;
+		while (i < size_it1 + size_it2)
+		{
+			stock_it1 = it1[static_cast<int>(i1 * 2 + 1)];
+			
+//			std::cout << COLOR_CYAN << stock_it1 << COLOR_RESET << " ";
+			if (i2 < size_it2)
+			{
+				stock_it2 = it2[static_cast<int>(i2 * 2 + 1)];
+
+//				std::cout << COLOR_MAGENTA << stock_it2 << COLOR_RESET << " ";
+				
+				if (stock_it1 < stock_it2)
+				{
+					stock.push_back(stock_it1);
+					i1++;
+				}
+				else
+				{
+					stock.push_back(stock_it2);
+					i2++;					
+				}
+			}
+			else
+			{
+				stock.push_back(stock_it1);
+				i1++;
+			}
+			i++;
+		}
+		for(std::vector<int> :: iterator itX = stock.begin(); itX != stock.end(); itX++)
+		{
+			std::cout << *itX << " " << std::endl;
+//			*it1 = *itX;
+//			it1 += 2;
+		}
+
+
+		std::vector<int> :: iterator itX = stock.begin();
+		std::cout << "it : " << COLOR_CYAN;
+		for(size_t ii = 0; ii < size_it1 + size_it2; ii++)
+		{
+			std::cout << it1[static_cast<int>(ii * 2 + 1)] << " ";
+			it1[static_cast<int>(ii * 2 + 1)] = *itX;
+			itX++;
+		}
+		std::cout << COLOR_RESET << std::endl;
+
+		std::cout << "it : " << COLOR_MAGENTA;
+		for(size_t ii = 0; ii < size_it1 + size_it2; ii++)
+		{
+			std::cout << it1[static_cast<int>(ii * 2 + 1)] << " ";
+		}
+		std::cout << COLOR_RESET << std::endl;
+
+	}
+	std::cout << "\n======" << std::endl;
 }
