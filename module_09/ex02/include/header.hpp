@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 11:02:29 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:25:49 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,10 @@ void								build_S_pend(std::vector<int> :: iterator it,
 										size_t size,
 										std::vector<int> &S,
 										std::vector<int> &pend);
+std::vector<int>					jacobsthal(size_t size);
+void								binary_insert(std::vector<int> &S,
+										size_t begin,
+										size_t end,
+										int num);
 
 #endif

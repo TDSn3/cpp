@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/07/24 10:58:27 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/07/24 15:25:56 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,8 @@ NAME_FILE	= main								\
 			  sort_pair							\
 			  recursive_sort_biggest_num_pairs	\
 			  build_S_pend						\
+			  jacobsthal						\
+			  binary_insert						\
 
 SRC			= $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
