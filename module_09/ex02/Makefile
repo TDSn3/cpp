@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/07/24 20:07:46 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/07/24 21:56:27 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ HEADERS		= $(shell find include/ -type f)
 
 NAME_FILE	= main								\
 			  use_vector						\
+			  use_list							\
 			  parsing							\
 			  make_pair							\
 			  sort_pair							\
@@ -42,7 +43,6 @@ NAME_FILE	= main								\
 			  jacobsthal						\
 			  binary_insert						\
 			  insert_sort_pend					\
-			  show_S							\
 
 SRC			= $(addsuffix .cpp, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))

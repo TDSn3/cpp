@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:04:03 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 20:09:16 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/24 21:55:30 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ static void	sort_with_vector(std::vector<int> *vect_line)
 
 	insert_sort_pend(S, pend);
 
-	show_S(S);
+	show_S<std::vector<int> >(S);
 
 	end = clock();
 	time_taken = (double)(end - start) / CLOCKS_PER_SEC;
-	std::cout << "Temps d'exécution : " << std::fixed << std::setprecision(6) << time_taken << " secondes" << std::endl;
+	std::cout << "Temps d'exécution de" << COLOR_BOLD_MAGENTA << " vector "<< COLOR_RESET << ":\t" << std::fixed << std::setprecision(6) << time_taken << " secondes" << std::endl;
 }

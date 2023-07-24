@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 20:08:03 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:05:06 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 
 	std::string			line(argv[1]);
 
-	if (use_vector(line))
+	if (use_vector(line) || use_list(line))
 		return (1);
 
 	return (0);
