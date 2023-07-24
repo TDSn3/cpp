@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 09:32:28 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:02:29 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,10 @@ void								recursive_sort_biggest_num_pairs(
 										std::vector<int> :: iterator it2,
 										size_t size_it1,
 										size_t size_it2);
+void								build_S_pend(std::vector<int> :: iterator it,
+										std::vector<int> :: iterator end,
+										size_t size,
+										std::vector<int> &S,
+										std::vector<int> &pend);
 
 #endif

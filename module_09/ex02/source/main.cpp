@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 10:43:03 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:12:26 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,43 @@ int	main(int argc, char **argv)
 	}
 
 	std::vector<int>						*vect_line = NULL;
+	std::vector<int>						S;
+	std::vector<int>						pend;
 	std::string								line(argv[1]);
 
 	vect_line = parsing(line);
 	if (!vect_line)
 		return (1);
+	if ( (*vect_line).size() == 1)	//	<---
+	{
+		std::cout << (*vect_line)[0] << std::endl;
+		return (0);
+	}
+
 
 	std::vector<int> :: iterator			it_vect_line = (*vect_line).begin();
 	Pair_it< std::vector<int> :: iterator >	P_it(it_vect_line, 2);
 
-	sort_pair(it_vect_line, (*vect_line).end(), (*vect_line).size());
+	sort_pair(it_vect_line, (*vect_line).end(), (*vect_line).size() );
+	show_pair(it_vect_line, (*vect_line).end(), (*vect_line).size() );
 
 	std::cout << "\n-----\n" << std::endl;
 
 	recursive_sort_biggest_num_pairs(it_vect_line, it_vect_line, (*vect_line).size() / 2, 0);
+	show_pair(it_vect_line, (*vect_line).end(), (*vect_line).size() );
 
-	show_pair(it_vect_line, (*vect_line).end(), (*vect_line).size());
+	std::cout << "\n-----\n" << std::endl;
+
+	build_S_pend(it_vect_line, (*vect_line).end(), (*vect_line).size(), S, pend);
+
+	std::cout << "S :\t";
+	for (std::vector<int> :: iterator it = S.begin(); it != S.end(); it++)
+		std::cout << *it << " ";
+	std::cout << "\n";
+	std::cout << "pend :\t";
+	for (std::vector<int> :: iterator it = pend.begin(); it != pend.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
 
 	delete vect_line;
 
