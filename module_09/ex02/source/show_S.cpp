@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   show_S.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 20:08:03 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/07/24 20:07:09 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/07/24 20:07:50 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/header.hpp"
+#include <header.hpp>
 
-int	main(int argc, char **argv)
+void	show_S(std::vector<int> &S)
 {
-	if (argc != 2 || !argv[1] || !argv[1][0])
-	{
-		std::cerr << COLOR_BOLD_RED << "Error: bad numbers of arguments." << COLOR_RESET << std::endl;
-		return (1);
-	}
-
-	std::string			line(argv[1]);
-
-	if (use_vector(line))
-		return (1);
-
-	return (0);
+	for (std::vector<int> :: iterator it = S.begin(); it != S.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
 }
