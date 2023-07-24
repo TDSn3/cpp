@@ -6,11 +6,10 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 17:18:40 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/21 09:45:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/24 09:33:16 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/header.hpp"
 #include <header.hpp>
 
 int	check_error_atol(std::string &str, long int result);
@@ -33,7 +32,7 @@ std::vector<int>	*parsing(std::string &line)
 	std::istringstream	ss(line);
 	std::string			stock;
 
-	std::cout << "Parsing :" << std::endl;
+	// std::cout << "Parsing :" << std::endl;
 
 	while (std::getline(ss, stock, ' '))
 	{
@@ -62,8 +61,8 @@ std::vector<int>	*parsing(std::string &line)
 		ret->push_back(static_cast<int>(stock_i_num));
 	}
 
-	for (std::vector<int> :: iterator it = ret->begin(); it != ret->end(); it++)
-		std::cout << *it << std::endl;
+	// for (std::vector<int> :: iterator it = ret->begin(); it != ret->end(); it++)
+	// 	std::cout << *it << std::endl;
 
 	return (ret);
 }
