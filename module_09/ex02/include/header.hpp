@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 15:25:49 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:49:27 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include <memory>
 # include <vector>
 # include <exception>
+# include <ctime>
 
 # include "colors.hpp"
-# include "./class/Pair_it.hpp"
 
 std::vector<int>					*parsing(std::string &line);
 std::vector<std::vector<int> * >	*make_pair(std::vector<int> *vect);
