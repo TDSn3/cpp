@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 15:25:17 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:11:56 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,50 @@ int	main(int argc, char **argv)
 		std::cout << *it << " ";
 	std::cout << std::endl;
 
-	std::vector<int> test = jacobsthal(11);
+	std::vector<int>	jacobsthal_stock;
 
-	std::cout << "test :\t";
-	for (std::vector<int> :: iterator it = test.begin(); it != test.end(); it++)
+	jacobsthal_stock = jacobsthal(pend.size());
+	std::cout << "jacobsthal_stock :\t";
+	for (std::vector<int> :: iterator it = jacobsthal_stock.begin(); it != jacobsthal_stock.end(); it++)
 		std::cout << *it << " ";
 	std::cout << std::endl;
 
-	binary_insert(S, 0, S.size() - 1, 11);
+	for (std::vector<int> :: iterator it = jacobsthal_stock.begin(); it != jacobsthal_stock.end(); it++)
+	{
+		std::cout << "insert : " << pend[static_cast<size_t>(*it)] << "\n";
+		binary_insert(S, 0, S.size(), pend[static_cast<size_t>(*it)] );
+		*it = pend[static_cast<size_t>(*it)];	// replace index by value
+	}
+
+
+	// for (std::vector<int> :: iterator it = jacobsthal_stock.begin(); it != jacobsthal_stock.end(); it++)
+	// {
+	// 	std::vector<int> :: iterator it_erase = std::find(pend.begin(), pend.end(), pend[static_cast<size_t>(*it)]);
+	// 	if (it_erase != pend.end())
+	// 		pend.erase(it_erase);
+	// }
+
+	std::cout << "S :\t";
+	for (std::vector<int> :: iterator it = S.begin(); it != S.end(); it++)
+		std::cout << *it << " ";
+	std::cout << "\n";
+	std::cout << "pend :\t";
+	for (std::vector<int> :: iterator it = pend.begin(); it != pend.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+
+
+
+	for (std::vector<int> :: iterator it = jacobsthal_stock.begin(); it != jacobsthal_stock.end(); it++)
+	{
+		std::vector<int> :: iterator it_erase = std::find(pend.begin(), pend.end(), *it);
+		std::cout << "erase : " << *it_erase << "\n";
+		pend.erase(it_erase);
+	}
+
+	for (std::vector<int> :: iterator it = pend.begin(); it != pend.end(); it++)
+		binary_insert(S, 0, S.size(), *it);
+
 	std::cout << "S :\t";
 	for (std::vector<int> :: iterator it = S.begin(); it != S.end(); it++)
 		std::cout << *it << " ";
