@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 17:18:40 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 20:14:05 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/25 08:59:22 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_error_atol(std::string &str, long int result);
 
-std::vector<int>	*parsing(std::string &line)
+std::vector<int>	*parsing(int argc, char **argv)
 {
 	std::vector<int> *ret = NULL;
 
@@ -29,34 +29,68 @@ std::vector<int>	*parsing(std::string &line)
 		return (NULL);
 	}
 
-	std::istringstream	ss(line);
-	std::string			stock;
 
-	while (std::getline(ss, stock, ' '))
+	if (argc == 2)
 	{
-		long int	stock_i_num;
+		std::string			line(argv[1]);
+		std::istringstream	ss(line);
+		std::string			stock;
 
-		if (stock.empty())
-			continue ;
-		for (std::string :: iterator it = stock.begin(); it != stock.end(); it++)
+		while (std::getline(ss, stock, ' '))
 		{
-			if (!std::isdigit(*it))
+			long int	stock_i_num;
+
+			if (stock.empty())
+				continue ;
+			for (std::string :: iterator it = stock.begin(); it != stock.end(); it++)
 			{
-				std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad arguments. Not a positive integer." << COLOR_RESET << std::endl;
+				if (!std::isdigit(*it))
+				{
+					std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad arguments. Not a positive integer." << COLOR_RESET << std::endl;
+					delete ret;
+					return (NULL);
+				}
+			}
+
+			stock_i_num = std::atol(stock.c_str());
+
+			if (check_error_atol(stock, stock_i_num))
+			{
+				std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad value. Int max" << COLOR_RESET << std::endl;
 				delete ret;
 				return (NULL);
 			}
+			ret->push_back(static_cast<int>(stock_i_num));
 		}
-
-		stock_i_num = std::atol(stock.c_str());
-
-		if (check_error_atol(stock, stock_i_num))
+	}
+	else
+	{
+		for (int i = 1; i < argc; i++)
 		{
-			std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad value. Int max" << COLOR_RESET << std::endl;
-			delete ret;
-			return (NULL);
-		}
-		ret->push_back(static_cast<int>(stock_i_num));
+			long int	stock_i_num;
+			std::string	line(argv[i]);
+
+			if (line.empty())
+				continue ;
+			for (std::string :: iterator it = line.begin(); it != line.end(); it++)
+			{
+				if (!std::isdigit(*it))
+				{
+					std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad arguments. Not a positive integer." << COLOR_RESET << std::endl;
+					delete ret;
+					return (NULL);
+				}
+			}
+
+			stock_i_num = std::atol(argv[i]);
+			if (check_error_atol(line, stock_i_num))
+			{
+				std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad value. Int max" << COLOR_RESET << std::endl;
+				delete ret;
+				return (NULL);
+			}
+			ret->push_back(static_cast<int>(stock_i_num));
+		}	
 	}
 
 	return (ret);
@@ -71,7 +105,7 @@ int	check_error_atol(std::string &str, long int result)
 	return (0);
 }
 
-std::list<int>	*l_parsing(std::string &line)
+std::list<int>	*l_parsing(int argc, char **argv)
 {
 	std::list<int> *ret = NULL;
 
@@ -86,34 +120,68 @@ std::list<int>	*l_parsing(std::string &line)
 		return (NULL);
 	}
 
-	std::istringstream	ss(line);
-	std::string			stock;
 
-	while (std::getline(ss, stock, ' '))
+	if (argc == 2)
 	{
-		long int	stock_i_num;
+		std::string			line(argv[1]);
+		std::istringstream	ss(line);
+		std::string			stock;
 
-		if (stock.empty())
-			continue ;
-		for (std::string :: iterator it = stock.begin(); it != stock.end(); it++)
+		while (std::getline(ss, stock, ' '))
 		{
-			if (!std::isdigit(*it))
+			long int	stock_i_num;
+
+			if (stock.empty())
+				continue ;
+			for (std::string :: iterator it = stock.begin(); it != stock.end(); it++)
 			{
-				std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad arguments. Not a positive integer." << COLOR_RESET << std::endl;
+				if (!std::isdigit(*it))
+				{
+					std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad arguments. Not a positive integer." << COLOR_RESET << std::endl;
+					delete ret;
+					return (NULL);
+				}
+			}
+
+			stock_i_num = std::atol(stock.c_str());
+
+			if (check_error_atol(stock, stock_i_num))
+			{
+				std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad value. Int max" << COLOR_RESET << std::endl;
 				delete ret;
 				return (NULL);
 			}
+			ret->push_back(static_cast<int>(stock_i_num));
 		}
-
-		stock_i_num = std::atol(stock.c_str());
-
-		if (check_error_atol(stock, stock_i_num))
+	}
+	else
+	{
+		for (int i = 1; i < argc; i++)
 		{
-			std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad value. Int max" << COLOR_RESET << std::endl;
-			delete ret;
-			return (NULL);
-		}
-		ret->push_back(static_cast<int>(stock_i_num));
+			long int	stock_i_num;
+			std::string	line(argv[i]);
+
+			if (line.empty())
+				continue ;
+			for (std::string :: iterator it = line.begin(); it != line.end(); it++)
+			{
+				if (!std::isdigit(*it))
+				{
+					std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad arguments. Not a positive integer." << COLOR_RESET << std::endl;
+					delete ret;
+					return (NULL);
+				}
+			}
+
+			stock_i_num = std::atol(argv[i]);
+			if (check_error_atol(line, stock_i_num))
+			{
+				std::cerr << COLOR_BOLD_RED << "Error: syntax. Bad value. Int max" << COLOR_RESET << std::endl;
+				delete ret;
+				return (NULL);
+			}
+			ret->push_back(static_cast<int>(stock_i_num));
+		}	
 	}
 
 	return (ret);

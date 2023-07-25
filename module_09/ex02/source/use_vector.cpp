@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:04:03 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 21:55:30 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/25 09:24:03 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	sort_with_vector(std::vector<int> *vect_line);
 
-int	use_vector(std::string &line)
+int	use_vector(int argc, char **argv)
 {
 	std::vector<int>	*vect_line = NULL;
 
-	vect_line = parsing(line);
+	vect_line = parsing(argc, argv);
 	if (!vect_line)
 	{
 		std::cerr << COLOR_BOLD_RED << "Error: bad arguments." << COLOR_RESET << std::endl;
@@ -48,6 +48,9 @@ static void	sort_with_vector(std::vector<int> *vect_line)
 	std::vector<int>				S;
 	std::vector<int>				pend;
 
+	std::cout << COLOR_MAGENTA << "Non trié :\t"<< COLOR_RESET;
+	show_S<std::vector<int> >(*vect_line);
+
 	start = clock();
 
 	it_vect_line = (*vect_line).begin();
@@ -60,9 +63,10 @@ static void	sort_with_vector(std::vector<int> *vect_line)
 
 	insert_sort_pend(S, pend);
 
+	std::cout << COLOR_BOLD_MAGENTA << "Trié :\t\t"<< COLOR_RESET;
 	show_S<std::vector<int> >(S);
 
 	end = clock();
 	time_taken = (double)(end - start) / CLOCKS_PER_SEC;
-	std::cout << "Temps d'exécution de" << COLOR_BOLD_MAGENTA << " vector "<< COLOR_RESET << ":\t" << std::fixed << std::setprecision(6) << time_taken << " secondes" << std::endl;
+	std::cout << "Temps d'exécution de" << COLOR_BOLD_MAGENTA << " vector "<< COLOR_RESET << ":\t" << std::fixed << std::setprecision(6) << time_taken << " secondes\n" << std::endl;
 }

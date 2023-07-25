@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 21:56:11 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/25 09:10:18 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@
 # include <list>
 # include <exception>
 # include <ctime>
+# include <iomanip>
+# include <algorithm>
 
 # include "colors.hpp"
 
-int									use_vector(std::string &line);
-int									use_list(std::string &line);
-std::vector<int>					*parsing(std::string &line);
-std::list<int>						*l_parsing(std::string &line);
+int									use_vector(int argc, char **argv);
+int									use_list(int argc, char **argv);
+std::vector<int>					*parsing(int argc, char **argv);
+std::list<int>						*l_parsing(int argc, char **argv);
 std::vector<std::vector<int> * >	*make_pair(std::vector<int> *vect);
 void								sort_pair(
 										std::vector<int> :: iterator it,
@@ -66,8 +68,15 @@ std::list<int> :: iterator			give_it_list(std::list<int> :: iterator it, int ind
 template <typename T>
 void show_S(T &container)
 {
-	for (typename T :: iterator it = container.begin(); it != container.end(); it++)
+	size_t	i = 0;
+	
+	for (typename T :: iterator it = container.begin(); it != container.end() && i < 5; it++)
+	{
 		std::cout << *it << " ";
+		i++;
+	}
+	if (i == 5)
+		std::cout << "[...] " << container.back() << " ";
 	std::cout << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:04:03 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/24 21:55:35 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/25 09:23:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	sort_with_list(std::list<int> *list_line);
 
-int	use_list(std::string &line)
+int	use_list(int argc, char **argv)
 {
 	std::list<int>	*list_line = NULL;
 
-	list_line = l_parsing(line);
+	list_line = l_parsing(argc, argv);
 	if (!list_line)
 	{
 		std::cerr << COLOR_BOLD_RED << "Error: bad arguments." << COLOR_RESET << std::endl;
@@ -48,6 +48,9 @@ static void	sort_with_list(std::list<int> *list_line)
 	std::list<int>				S;
 	std::list<int>				pend;
 
+	std::cout << COLOR_RED << "Non trié :\t"<< COLOR_RESET;
+	show_S<std::list<int> >(*list_line);
+
 	start = clock();
 
 	it_list_line = (*list_line).begin();
@@ -60,11 +63,12 @@ static void	sort_with_list(std::list<int> *list_line)
 
 	l_insert_sort_pend(S, pend);
 
+	std::cout << COLOR_BOLD_RED << "Trié :\t\t"<< COLOR_RESET;
 	show_S<std::list<int> >(S);
 
 	end = clock();
 	time_taken = (double)(end - start) / CLOCKS_PER_SEC;
-	std::cout << "Temps d'exécution de" << COLOR_BOLD_RED << " list "<< COLOR_RESET << ":\t" << std::fixed << std::setprecision(6) << time_taken << " secondes" << std::endl;
+	std::cout << "Temps d'exécution de" << COLOR_BOLD_RED << " list "<< COLOR_RESET << ":\t" << std::fixed << std::setprecision(6) << time_taken << " secondes\n" << std::endl;
 }
 
 std::list<int> :: iterator	give_it_list(std::list<int> :: iterator it, int index)
