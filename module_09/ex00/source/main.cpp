@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/18 09:42:54 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/25 09:41:23 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,18 @@ int		main(int argc, char **argv)
 
 	std::ifstream						file(argv[1]);
 
-	if (!file.is_open() || read_file(file, db_input))
+	if (!file.good() || !file.is_open() || read_file(file, db_input))
 	{
 		std::cerr << "Error: could not open file." << std::endl;
 		return (1);
 	}
 	file.close();
 
-	read_data_csv(db_data_csv);
+	if (read_data_csv(db_data_csv))
+	{
+		std::cerr << "Error: could not open file." << std::endl;
+		return (1);	
+	}
 
 	std::cout << "\n\n" << std::endl;
 
@@ -202,7 +206,7 @@ int		read_data_csv(std::map<int, double> &db_data_csv)
 {
 	std::ifstream	file("source/data.csv");
 
-	if (!file.is_open() || split_line_csv(file, db_data_csv))
+	if (!file.good() || !file.is_open() || split_line_csv(file, db_data_csv))
 	{
 		std::cerr << "Error: could not open file." << std::endl;
 		return (1);
