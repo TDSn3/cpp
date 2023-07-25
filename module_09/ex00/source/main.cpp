@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/07/25 09:41:23 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/07/25 11:07:10 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,28 +242,58 @@ int		split_line_csv(std::ifstream &file, std::map<int, double> &db_data_csv)
 			if (j == 0)			// date
 			{
 				int					k;
-				int					stock_i_date;
+				long int			stock_i_date;
 				std::string			stock_date;
 				std::istringstream	ss2(stock);
 
 				k = 0;
 				while (std::getline(ss2, stock_date, '-'))
 				{
+					size_t	l;
+					
+					for (l = 0; stock_date[l]; l++)
+						if (!std::isdigit(stock_date[l]))
+							return (3);			// Error: syntax. Bad date format. YYYY-MM-DD.					
+					if (k == 0 && l != 4)		// year
+						return (3);				// Error: syntax. Bad date format. YYYY-MM-DD.		
+					else if (k > 0 && l != 2)	// month/day
+						return (3);				// Error: syntax. Bad date format. YYYY-MM-DD.			
 					stock_i_date = std::atoi(stock_date.c_str());
-					tab_date[k] = stock_i_date;
+					if (check_error_atol(stock_date, stock_i_date))
+						return (5);				// Error: syntax. Bad value of date.
+					if (k < 3)
+						tab_date[k] = static_cast<int>(stock_i_date);
 					k++;
 				}
+				if (k != 3)
+					return (3);					// Error: syntax. Bad date format. YYYY-MM-DD.
 			}
 			else if (j == 1)	// value
 			{
+				size_t	k;
+				
+				for (k = 0; stock[k]; k++)
+					if (!std::isdigit(stock[k]) && stock[k] != '.')
+						return (4);				// Error: syntax. Bad value of btc.
+				stock_d_value = std::atof(stock.c_str());
+				if (check_error_atof(stock, stock_d_value))
+					return (4);					// Error: syntax. Bad value of btc.
+				if (stock_d_value < 0)
+					return (4);					// Error: syntax. Bad value of btc.
+
+
 				stock_d_value = std::atof(stock.c_str());
 			}
 			j++;
 		}
+		if (j != 2)
+			return (1);							// Error: syntax. More or minus than 2 args.
 		j = 0;
 		db_data_csv[(tab_date[0] * 10000) + (tab_date[1] * 100) + tab_date[2]] = stock_d_value;
 		i++;
 	}
+	if (!check_date(tab_date[0], tab_date[1], tab_date[2]))
+		return (5);							// Error: syntax. Bad value of date.
 	return (0);
 }
 
